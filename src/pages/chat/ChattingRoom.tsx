@@ -98,7 +98,7 @@ export default function ChattingRoom() {
           </div>
         }
         right={
-          <div className="flex gap-2">
+          <div className="flex gap-[16px]">
             <button onClick={() => alert('준비중입니다.')}>
               <img src={searchIcon} alt="search" />
             </button>
@@ -123,7 +123,7 @@ export default function ChattingRoom() {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`mb-3 flex items-start gap-2 ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
+            className={`mb-1 flex items-start gap-2 ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
           >
             {/* 친구 메시지일 때 프로필 */}
             {msg.sender === 'friend' && <img src={profileIcon} alt="상대 프로필" className="h-9 w-9 rounded-full" />}
@@ -132,11 +132,11 @@ export default function ChattingRoom() {
               {/* 친구 이름 */}
               {msg.sender === 'friend' && <span className="mb-1 text-xs text-gray-500">친구 이름</span>}
 
-              <div className="flex items-end gap-1">
-                {msg.sender === 'me' && <span className="text-xs text-gray-700">{msg.time}</span>}
+              <div className={`flex items-end gap-2 ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
+                {msg.sender === 'me' && <span className="text-xs font-extralight text-gray-700">{msg.time}</span>}
 
                 <div
-                  className={`max-w-[70%] rounded-tl-sm rounded-tr-xl rounded-br-xl rounded-bl-xl px-3 py-1 break-words ${
+                  className={`max-w-[220px] rounded-tl-sm rounded-tr-xl rounded-br-xl rounded-bl-xl px-3 py-1 break-all ${
                     msg.sender === 'me' ? 'bg-green-50' : 'bg-white'
                   }`}
                 >
