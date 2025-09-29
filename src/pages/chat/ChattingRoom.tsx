@@ -31,20 +31,11 @@ export default function ChattingRoom() {
   });
   const [input, setInput] = useState(''); // 입력 값
 
-  const [, setIsComposing] = useState(false); // 한글 조합 중 여부
-
+  // onChange: 항상 상태 업데이트 → 조합 중에도 글자가 보임
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value); // 조합 중이든 아니든 항상 업데이트
+    setInput(e.target.value);
   };
 
-  const handleCompositionStart = () => {
-    setIsComposing(true); // 조합 시작
-  };
-
-  const handleCompositionEnd = (e: React.CompositionEvent<HTMLInputElement>) => {
-    setIsComposing(false); // 조합 종료
-    setInput(e.currentTarget.value); // 최종 확정
-  };
   // 스크롤 끝부분 참조
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   // 메시지 변경될 때마다 스크롤 끝으로 이동
@@ -96,7 +87,7 @@ export default function ChattingRoom() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') handleSend();
+    if (e.key === 'Enter' && !e.nativeEvent.isComposing) handleSend();
   };
 
   /*const handleLike = (index: number) => {
@@ -202,8 +193,6 @@ export default function ChattingRoom() {
           placeholder="메시지 입력..."
           value={input}
           onChange={handleChange}
-          onCompositionStart={handleCompositionStart}
-          onCompositionEnd={handleCompositionEnd}
           onKeyDown={handleKeyDown}
           className="flex h-10 w-[263px] rounded-full bg-gray-50 px-4 py-2 focus:outline-none"
         />
