@@ -30,7 +30,8 @@ export default function ChattingRoom() {
     return stored ? JSON.parse(stored) : [];
   });
   const [input, setInput] = useState(''); // 입력 값
-  const [isComposing, setIsComposing] = useState(false); // 한글 조합 중 여부
+
+  const [, setIsComposing] = useState(false); // 한글 조합 중 여부
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value); // 조합 중이든 아니든 항상 업데이트
