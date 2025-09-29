@@ -29,27 +29,21 @@ export default function ChattingRoom() {
     const stored = localStorage.getItem('chatMessages');
     return stored ? JSON.parse(stored) : [];
   });
-  const [input, setInput] = useState('');
-  const [isComposing, setIsComposing] = useState(false);
+  const [input, setInput] = useState(''); // 입력 값
+  const [isComposing, setIsComposing] = useState(false); // 한글 조합 중 여부
 
-  //한글 끝글자 중복 입력 방지
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // 한글 조합 중일 때는 상태 업데이트만 보류
-    if (!isComposing) {
-      setInput(e.target.value);
-    }
+    setInput(e.target.value); // 조합 중이든 아니든 항상 업데이트
   };
 
   const handleCompositionStart = () => {
-    setIsComposing(true);
+    setIsComposing(true); // 조합 시작
   };
 
   const handleCompositionEnd = (e: React.CompositionEvent<HTMLInputElement>) => {
-    setIsComposing(false);
-    // 조합이 끝났을 때 최종 글자 반영
-    setInput(e.currentTarget.value);
+    setIsComposing(false); // 조합 종료
+    setInput(e.currentTarget.value); // 최종 확정
   };
-
   // 스크롤 끝부분 참조
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   // 메시지 변경될 때마다 스크롤 끝으로 이동
