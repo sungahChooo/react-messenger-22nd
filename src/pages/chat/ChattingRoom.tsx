@@ -11,6 +11,7 @@ import cameraIcon from '../../assets/camera.svg';
 import microphoneIcon from '../../assets/microphone.svg';
 import sendIcon from '../../assets/sendIcon.svg';
 import chatData from '../../data.json';
+//import likeIcon from '../../assets/like.svg';
 
 interface Message {
   sender: string;
@@ -29,6 +30,25 @@ export default function ChattingRoom() {
     return stored ? JSON.parse(stored) : [];
   });
   const [input, setInput] = useState('');
+  const [isComposing, setIsComposing] = useState(false);
+
+  //한글 끝글자 중복 입력 방지
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 한글 조합 중일 때는 상태 업데이트만 보류
+    if (!isComposing) {
+      setInput(e.target.value);
+    }
+  };
+
+  const handleCompositionStart = () => {
+    setIsComposing(true);
+  };
+
+  const handleCompositionEnd = (e: React.CompositionEvent<HTMLInputElement>) => {
+    setIsComposing(false);
+    // 조합이 끝났을 때 최종 글자 반영
+    setInput(e.currentTarget.value);
+  };
 
   // 스크롤 끝부분 참조
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -84,6 +104,20 @@ export default function ChattingRoom() {
     if (e.key === 'Enter') handleSend();
   };
 
+  /*const handleLike = (index: number) => {
+    setMessages((prev) =>
+      prev.map((msg, i) =>
+        i === index
+          ? {
+              ...msg,
+              likes: msg.likedByMe ? msg.likes - 1 : msg.likes + 1,
+              likedByMe: !msg.likedByMe,
+            }
+          : msg,
+      ),
+    );
+  };*/
+
   return (
     <div className="bg-light-gray font-pretendard mx-auto min-h-screen w-full max-w-[375px] pb-[65px]">
       {/* 상단 헤더 */}
@@ -115,7 +149,7 @@ export default function ChattingRoom() {
       {/* 채팅 메시지 */}
       <div className="top-[70px] mx-3 flex max-w-[345px] flex-col gap-1 overflow-y-auto">
         <div className="flex justify-center">
-          <span className="mb-2 h-[32px] w-[115px] rounded-2xl bg-green-50 px-2 py-2 text-center text-xs font-normal text-gray-500">
+          <span className="mb-6 h-[32px] w-[115px] rounded-2xl bg-green-50 px-2 py-2 text-center text-xs font-normal text-gray-500">
             2024년 6월 19일{' '}
           </span>
         </div>
@@ -145,6 +179,15 @@ export default function ChattingRoom() {
 
                 {msg.sender === 'friend' && <span className="text-xs font-extralight text-gray-600">{msg.time}</span>}
               </div>
+              {/*공강하기 기능*/}
+              {/*<div
+                className="justify-starat mt-1 flex h-[23px] w-[67px] items-center rounded-2xl bg-gray-200 px-2 py-1"
+                onClick={() => handleLike(index)}
+              >
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white">
+                  <img src={likeIcon} />
+                </span>
+              </div>*/}
             </div>
           </div>
         ))}
@@ -163,7 +206,9 @@ export default function ChattingRoom() {
           type="text"
           placeholder="메시지 입력..."
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={handleChange}
+          onCompositionStart={handleCompositionStart}
+          onCompositionEnd={handleCompositionEnd}
           onKeyDown={handleKeyDown}
           className="flex h-10 w-[263px] rounded-full bg-gray-50 px-4 py-2 focus:outline-none"
         />
