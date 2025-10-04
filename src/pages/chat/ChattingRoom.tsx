@@ -11,7 +11,7 @@ import cameraIcon from '../../assets/camera.svg';
 import microphoneIcon from '../../assets/microphone.svg';
 import sendIcon from '../../assets/sendIcon.svg';
 import chatData from '../../data.json';
-//import likeIcon from '../../assets/like.svg';
+import likeIcon from '../../assets/like.svg';
 
 interface Message {
   sender: string;
@@ -25,13 +25,13 @@ interface Message {
 export default function ChattingRoom() {
   const navigate = useNavigate();
   const { roomId } = useParams<{ roomId: string }>();
+
   const [messages, setMessages] = useState<Message[]>(() => {
     const stored = localStorage.getItem('chatMessages');
     return stored ? JSON.parse(stored) : [];
   });
   const [input, setInput] = useState(''); // 입력 값
 
-  // onChange: 항상 상태 업데이트 → 조합 중에도 글자가 보임
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
@@ -69,11 +69,14 @@ export default function ChattingRoom() {
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const currentTime = `${formattedHour}:${formattedMinutes} ${ampm}`; // 예: 3:05 PM형태로 저장
 
+    // 새로운 메시지 객체
     const newMessage: Message = {
       sender: 'me',
       message: input,
       time: currentTime,
       roomId,
+      likes: 0,
+      likedByMe: false,
     };
 
     // 상태 업데이트
@@ -86,23 +89,31 @@ export default function ChattingRoom() {
     setInput('');
   };
 
+  // 엔터키 전송 및 한글 조합 중일 때  전송 방지
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.nativeEvent.isComposing) handleSend();
   };
 
-  /*const handleLike = (index: number) => {
-    setMessages((prev) =>
-      prev.map((msg, i) =>
+  // 공감하기 기능
+  const handleLike = (index: number) => {
+    setMessages((prev) => {
+      const updated = prev.map((msg, i) =>
         i === index
           ? {
               ...msg,
-              likes: msg.likedByMe ? msg.likes - 1 : msg.likes + 1,
+              likes: (msg.likes ?? 0) + (msg.likedByMe ? -1 : 1),
               likedByMe: !msg.likedByMe,
             }
           : msg,
-      ),
-    );
-  };*/
+      );
+
+      if (roomId) {
+        localStorage.setItem(`chatMessages_${roomId}`, JSON.stringify(updated));
+      }
+
+      return updated;
+    });
+  };
 
   return (
     <div className="bg-light-gray font-pretendard mx-auto min-h-screen w-full max-w-[375px] pb-[65px]">
@@ -152,28 +163,39 @@ export default function ChattingRoom() {
               {/* 친구 이름 */}
               {msg.sender === 'friend' && <span className="mb-1 text-xs text-gray-500">친구 이름</span>}
 
-              <div className={`flex items-end gap-2 ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
-                {msg.sender === 'me' && <span className="text-xs font-extralight text-gray-700">{msg.time}</span>}
-
-                <div
-                  className={`max-w-[220px] rounded-tl-sm rounded-tr-xl rounded-br-xl rounded-bl-xl px-3 py-1 break-all ${
-                    msg.sender === 'me' ? 'bg-green-50' : 'bg-white'
-                  }`}
-                >
-                  {msg.message}
+              {/*공감기능을 위한 div */}
+              <div className="group">
+                <div className={`flex items-end gap-2 ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
+                  {msg.sender === 'me' && <span className="text-xs font-extralight text-gray-700">{msg.time}</span>}
+                  {/*메시지 버블과 시간 배열을 위한 */}
+                  <div>
+                    <div
+                      className={`max-w-[220px] rounded-tl-sm rounded-tr-xl rounded-br-xl rounded-bl-xl px-3 py-1 break-all ${
+                        msg.sender === 'me' ? 'bg-green-50' : 'bg-white'
+                      }`}
+                    >
+                      {msg.message}
+                    </div>
+                  </div>
+                  {msg.sender === 'friend' && <span className="text-xs font-extralight text-gray-600">{msg.time}</span>}
                 </div>
-
-                {msg.sender === 'friend' && <span className="text-xs font-extralight text-gray-600">{msg.time}</span>}
+                {/*공강하기 기능*/}
+                {msg.sender === 'friend' && (
+                  <div className="group mt-1 flex flex-col items-start">
+                    <div
+                      className={`flex cursor-pointer items-center gap-1 rounded-full bg-gray-200 px-2 py-1 text-xs ${msg.likes === 0 ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}
+                      onClick={() => handleLike(index)}
+                    >
+                      <p className="flex h-4 w-4 items-center justify-center rounded-full bg-white">
+                        <img src={likeIcon} />
+                      </p>
+                      <span className={`ml-1 text-xs ${msg.likedByMe ? 'text-green-600' : 'text-gray-600'}`}>
+                        {msg.likes}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
-              {/*공강하기 기능*/}
-              {/*<div
-                className="justify-starat mt-1 flex h-[23px] w-[67px] items-center rounded-2xl bg-gray-200 px-2 py-1"
-                onClick={() => handleLike(index)}
-              >
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white">
-                  <img src={likeIcon} />
-                </span>
-              </div>*/}
             </div>
           </div>
         ))}
