@@ -3,7 +3,7 @@ import Chatting from './pages/chat/Chatting';
 import Community from './pages/community/Community';
 import FriendList from './pages/friendList/FriendList';
 import Setting from './pages/settings/Setting';
-import Sidebar from './pages/sidebar/Sidebar';
+import Sidebar from './pages/navbar/Navbar';
 import ChattingRoom from './pages/chat/ChattingRoom';
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';

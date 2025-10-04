@@ -1,9 +1,9 @@
 import banner from '../../assets/banner.svg';
 import Header from '../../components/Header';
-import searchIcon from '../../assets/find.png';
+import searchIcon from '../../assets/search.svg';
 import camerIcon from '../../assets/camera.svg';
 import chattingRoomIcon from '../../assets/chattingRoom.svg';
-import profile from '../../assets/profileImage.png';
+import profileICon from '../../assets/profile.svg';
 import { useNavigate } from 'react-router-dom';
 
 function Chatting() {
@@ -14,7 +14,7 @@ function Chatting() {
       <Header
         title="채팅"
         right={
-          <div className="flex cursor-pointer gap-2">
+          <div className="flex cursor-pointer gap-4">
             <button onClick={() => alert('준비중입니다.')}>
               <img src={searchIcon} alt="search" />
             </button>
@@ -35,10 +35,10 @@ function Chatting() {
 
       {/* 채팅방 리스트 */}
       <div>
-        <ul className="mb-4 flex cursor-pointer flex-col gap-4 px-4">
+        <ul className="mb-4 flex cursor-pointer flex-col gap-6 px-4">
           {[1, 2, 3, 4, 5, 6, 7].map((i) => (
             <li key={i} className="flex items-center gap-4 px-4" onClick={() => navigate(`/chattingroom/${i}`)}>
-              <img src={profile} /> {/* 채팅방 이미지 */}
+              <img src={profileICon} className="h-[56px]" /> {/* 채팅방 이미지 */}
               <div className="w-full">
                 <p className="flex justify-between">
                   <span className="font-bold">채팅방 이름</span> {/* 채팅방 이름 */}

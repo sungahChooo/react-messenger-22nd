@@ -1,13 +1,9 @@
-import FriendIcon from '../../assets/friend.svg';
-import FriendIconG from '../../assets/friendIconG.svg';
-import chatIcon from '../../assets/chatIcon.svg';
-import chatIconG from '../../assets/chatIconG.svg';
-import communityIconG from '../../assets/communityG.png';
-import communityIcon from '../../assets/community.svg';
-import callIconG from '../../assets/callG.png';
-import callIcon from '../../assets/call.svg';
-import settingIconG from '../../assets/settingG.png';
-import settingsIcon from '../../assets/setting.svg';
+import FriendIcon from '../../assets/friend.svg?react';
+import ChatIcon from '../../assets/chatIcon.svg?react';
+import CommunityIcon from '../../assets/community.svg?react';
+import CallIcon from '../../assets/call.svg?react';
+import SettingsIcon from '../../assets/setting.svg?react';
+
 import { Link, useLocation } from 'react-router-dom';
 
 function Sidebar() {
@@ -17,11 +13,10 @@ function Sidebar() {
     <nav className="border-light-gray fixed bottom-0 left-1/2 z-10 flex h-[65px] w-full max-w-[375px] -translate-x-1/2 items-center justify-around rounded border-t bg-white">
       <button className="flex flex-col items-center justify-center gap-1 border-0 bg-transparent">
         <Link to="/friendList">
-          <img
-            src={pathname === '/friendList' || pathname === '/' ? FriendIcon : FriendIconG}
-            alt="friend"
-            className="h-6 w-6"
+          <FriendIcon
+            className={`h-6 w-6 ${pathname === '/friendList' || pathname === '/' ? 'text-black' : 'text-gray-400'}`}
           />
+
           <span
             className={
               `font-pretendard text-center text-[12px] leading-[140%] font-semibold tracking-normal ` +
@@ -34,7 +29,7 @@ function Sidebar() {
       </button>
       <button className="flex cursor-pointer flex-col items-center justify-center gap-1 border-0 bg-transparent">
         <Link to="/chat" className={pathname === '/chat' ? 'text-black' : 'text-light-gray'}>
-          <img src={pathname === '/chat' ? chatIcon : chatIconG} alt="chat" className="h-6 w-6" />
+          <ChatIcon className={`h-6 w-6 ${pathname === '/chat' ? 'text-black' : 'text-gray-400'}`} />
           <span
             className={
               `font-pretendard text-center text-[12px] leading-[140%] font-semibold tracking-normal ` +
@@ -47,7 +42,7 @@ function Sidebar() {
       </button>
       <button className="flex cursor-pointer justify-center gap-1 border-0 bg-transparent">
         <Link to="/community" className="flex flex-col items-center gap-2">
-          <img src={pathname === '/community' ? communityIcon : communityIconG} alt="chat" className="h-6 w-6" />
+          <CommunityIcon className={`h-6 w-6 ${pathname === '/community' ? 'text-black' : 'text-gray-400'}`} />
           <span
             className={
               `font-pretendard flex justify-center text-center text-[12px] leading-[140%] font-semibold tracking-normal ` +
@@ -60,7 +55,7 @@ function Sidebar() {
       </button>
       <button className="flex cursor-pointer flex-col items-center justify-center gap-1 border-0 bg-transparent">
         <Link to="/call">
-          <img src={pathname === '/call' ? callIcon : callIconG} alt="chat" className="h-6 w-6" />
+          <CallIcon className={`h-6 w-6 ${pathname === '/call' ? 'text-black' : 'text-gray-400'}`} />
           <span
             className={
               `font-pretendard text-center text-[12px] leading-[140%] font-semibold tracking-normal ` +
@@ -73,7 +68,7 @@ function Sidebar() {
       </button>
       <button className="flex cursor-pointer flex-col items-center justify-center gap-1 border-0 bg-transparent">
         <Link to="/setting">
-          <img src={pathname === '/setting' ? settingsIcon : settingIconG} alt="chat" className="h-6 w-6" />
+          <SettingsIcon className={`h-6 w-6 ${pathname === '/setting' ? 'text-black' : 'text-gray-400'}`} />
           <span
             className={
               `font-pretendard text-center text-[12px] leading-[140%] font-semibold tracking-normal ` +

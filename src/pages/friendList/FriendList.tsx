@@ -1,6 +1,6 @@
-import profile from '../../assets/profileImage.png';
-import findIcon from '../../assets/find.png';
-import addFriendIcon from '../../assets/addFriend.png';
+import profile from '../../assets/profile.svg';
+import findIcon from '../../assets/search.svg';
+import addFriendIcon from '../../assets/addFriend.svg';
 import { useNavigate } from 'react-router-dom';
 
 function FriendList() {
@@ -37,7 +37,7 @@ function FriendList() {
         <p className="flex gap-3 border-b border-gray-300 px-4 py-3">ㄱ</p>
         {[1, 2, 3, 4, 5, 6, 7].map((i) => (
           <li key={i} className="flex cursor-pointer items-center gap-4 px-4" onClick={() => navigate(`/profile/${i}`)}>
-            <img src={profile} />
+            <img src={profile} className="h-[46px] w-[46px]" />
             <div>
               <div className="font-bold">친구이름</div>
               <div className="text-sm text-gray-500">상태메시지 있는 경우입니다.</div>

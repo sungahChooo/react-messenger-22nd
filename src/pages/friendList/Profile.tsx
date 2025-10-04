@@ -1,7 +1,7 @@
 // src/pages/Profile.tsx
 import { useParams } from 'react-router-dom';
 import xIcon from '../../assets/xIcon.svg';
-import profileImage from '../../assets/profileImage.png';
+import profileImage from '../../assets/profile.svg';
 import instagramIcon from '../../assets/instagram.svg';
 import editIcon from '../../assets/edit.svg';
 import profileChatIcon from '../../assets/profileChat.svg';
