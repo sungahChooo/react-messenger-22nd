@@ -9,7 +9,7 @@ function FriendList() {
     <div className="items font-pretendard mx-auto min-h-screen w-full max-w-[375px] bg-white pb-[65px]">
       {/* 상단 헤더 */}
       <header className="top-[124px] mb-4 flex h-[65px] w-[375px] justify-between gap-4 p-4 px-4 opacity-100">
-        <span className="flex items-center text-xl font-bold">친구</span>
+        <span className="flex items-center text-[24px] font-bold">친구</span>
         <div className="flex gap-4">
           <button onClick={() => alert('준비중입니다.')} className="cursor-pointer">
             <img src={findIcon} />

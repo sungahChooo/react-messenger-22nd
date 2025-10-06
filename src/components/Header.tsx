@@ -8,7 +8,7 @@ interface HeaderProps {
 export default function Header({ title, right }: HeaderProps) {
   return (
     <header className="sticky top-0 mb-4 flex h-[59px] w-[375px] justify-between gap-4 p-4 px-4">
-      <span className="flex items-center text-xl font-bold">{title}</span>
+      <span className="flex items-center">{title}</span>
       <div className="flex gap-4">{right}</div>
     </header>
   );

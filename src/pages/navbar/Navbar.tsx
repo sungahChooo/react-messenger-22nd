@@ -10,11 +10,11 @@ function Sidebar() {
   const { pathname } = useLocation();
 
   return (
-    <nav className="border-light-gray fixed bottom-0 left-1/2 z-10 flex h-[65px] w-full max-w-[375px] -translate-x-1/2 items-center justify-around rounded border-t bg-white">
-      <button className="flex flex-col items-center justify-center gap-1 border-0 bg-transparent">
+    <nav className="border-light-gray space-between fixed bottom-0 left-1/2 z-10 flex h-[65px] w-full max-w-[375px] -translate-x-1/2 items-center justify-around rounded border-t bg-white">
+      <div className="flex w-[46px] flex-col items-center justify-center border-0 bg-transparent">
         <Link to="/friendList">
           <FriendIcon
-            className={`h-6 w-6 ${pathname === '/friendList' || pathname === '/' ? 'text-black' : 'text-gray-400'}`}
+            className={`h-[24px] w-[24px] ${pathname === '/friendList' || pathname === '/' ? 'text-black' : 'text-gray-400'}`}
           />
 
           <span
@@ -26,10 +26,10 @@ function Sidebar() {
             친구
           </span>
         </Link>
-      </button>
-      <button className="flex cursor-pointer flex-col items-center justify-center gap-1 border-0 bg-transparent">
+      </div>
+      <div className="flex w-[46px] cursor-pointer flex-col items-center justify-center border-0 bg-transparent">
         <Link to="/chat" className={pathname === '/chat' ? 'text-black' : 'text-light-gray'}>
-          <ChatIcon className={`h-6 w-6 ${pathname === '/chat' ? 'text-black' : 'text-gray-400'}`} />
+          <ChatIcon className={`h-[24px] w-[24px] ${pathname === '/chat' ? 'text-black' : 'text-gray-400'}`} />
           <span
             className={
               `font-pretendard text-center text-[12px] leading-[140%] font-semibold tracking-normal ` +
@@ -39,10 +39,12 @@ function Sidebar() {
             채팅
           </span>
         </Link>
-      </button>
-      <button className="flex cursor-pointer justify-center gap-1 border-0 bg-transparent">
-        <Link to="/community" className="flex flex-col items-center gap-2">
-          <CommunityIcon className={`h-6 w-6 ${pathname === '/community' ? 'text-black' : 'text-gray-400'}`} />
+      </div>
+      <div className="flex w-[46px] cursor-pointer justify-center border-0 bg-transparent">
+        <Link to="/community" className="flex flex-col items-center justify-center gap-2">
+          <CommunityIcon
+            className={`h-[24px] w-[24px] ${pathname === '/community' ? 'text-black' : 'text-gray-400'}`}
+          />
           <span
             className={
               `font-pretendard flex justify-center text-center text-[12px] leading-[140%] font-semibold tracking-normal ` +
@@ -52,10 +54,10 @@ function Sidebar() {
             커뮤니티
           </span>
         </Link>
-      </button>
-      <button className="flex cursor-pointer flex-col items-center justify-center gap-1 border-0 bg-transparent">
+      </div>
+      <div className="flex w-[46px] cursor-pointer flex-col items-center justify-center border-0 bg-transparent">
         <Link to="/call">
-          <CallIcon className={`h-6 w-6 ${pathname === '/call' ? 'text-black' : 'text-gray-400'}`} />
+          <CallIcon className={`h-[24px] w-[24px] ${pathname === '/call' ? 'text-black' : 'text-gray-400'}`} />
           <span
             className={
               `font-pretendard text-center text-[12px] leading-[140%] font-semibold tracking-normal ` +
@@ -65,10 +67,10 @@ function Sidebar() {
             통화
           </span>
         </Link>
-      </button>
-      <button className="flex cursor-pointer flex-col items-center justify-center gap-1 border-0 bg-transparent">
+      </div>
+      <div className="flex w-[46px] cursor-pointer flex-col items-center justify-center border-0 bg-transparent">
         <Link to="/setting">
-          <SettingsIcon className={`h-6 w-6 ${pathname === '/setting' ? 'text-black' : 'text-gray-400'}`} />
+          <SettingsIcon className={`h-[24px] w-[24px] ${pathname === '/setting' ? 'text-black' : 'text-gray-400'}`} />
           <span
             className={
               `font-pretendard text-center text-[12px] leading-[140%] font-semibold tracking-normal ` +
@@ -78,7 +80,7 @@ function Sidebar() {
             설정
           </span>
         </Link>
-      </button>
+      </div>
     </nav>
   );
 }
