@@ -1,9 +1,9 @@
-import banner from '../../assets/banner.svg';
-import Header from '../../components/Header';
-import searchIcon from '../../assets/search.svg';
-import camerIcon from '../../assets/camera.svg';
-import chattingRoomIcon from '../../assets/chattingRoom.svg';
-import profileICon from '../../assets/profile.svg';
+import banner from '@/assets/banner.svg';
+import Header from '@/components/Header';
+import searchIcon from '@/assets/search.svg';
+import camerIcon from '@/assets/camera.svg';
+import chattingRoomIcon from '@/assets/chattingRoom.svg';
+import profileICon from '@/assets/profile.svg';
 import { useNavigate } from 'react-router-dom';
 
 function Chatting() {

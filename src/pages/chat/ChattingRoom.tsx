@@ -1,17 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../../components/Header';
-import beforeIcon from '../../assets/before.svg';
-import profileIcon from '../../assets/profile.svg';
-import searchIcon from '../../assets/search.svg';
-import callChattingRoomIcon from '../../assets/call.svg';
-import faceTimeIcon from '../../assets/facetimeIcon.svg';
-import plusIcon from '../../assets/plus.svg';
-import cameraIcon from '../../assets/camera.svg';
-import microphoneIcon from '../../assets/microphone.svg';
-import sendIcon from '../../assets/sendIcon.svg';
-import chatData from '../../data.json';
-import likeIcon from '../../assets/like.svg';
+import Header from '@/components/Header';
+import beforeIcon from '@/assets/before.svg';
+import profileIcon from '@/assets/profile.svg';
+import searchIcon from '@/assets/search.svg';
+import callChattingRoomIcon from '@/assets/call.svg';
+import faceTimeIcon from '@/assets/facetimeIcon.svg';
+import plusIcon from '@/assets/plus.svg';
+import cameraIcon from '@/assets/camera.svg';
+import microphoneIcon from '@/assets/microphone.svg';
+import sendIcon from '@/assets/sendIcon.svg';
+import chatData from '@/data.json';
+import likeIcon from '@/assets/like.svg';
 
 interface Message {
   sender: string;

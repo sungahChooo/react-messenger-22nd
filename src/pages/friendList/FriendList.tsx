@@ -1,6 +1,6 @@
-import profile from '../../assets/profile.svg';
-import findIcon from '../../assets/search.svg';
-import addFriendIcon from '../../assets/addFriend.svg';
+import profile from '@/assets/profile.svg';
+import findIcon from '@/assets/search.svg';
+import addFriendIcon from '@/assets/addFriend.svg';
 import { useNavigate } from 'react-router-dom';
 
 function FriendList() {

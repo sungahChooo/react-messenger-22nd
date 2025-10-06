@@ -1,8 +1,8 @@
-import FriendIcon from '../../assets/friend.svg?react';
-import ChatIcon from '../../assets/chatIcon.svg?react';
-import CommunityIcon from '../../assets/community.svg?react';
-import CallIcon from '../../assets/call.svg?react';
-import SettingsIcon from '../../assets/setting.svg?react';
+import FriendIcon from '@/assets/friend.svg?react';
+import ChatIcon from '@/assets/chatIcon.svg?react';
+import CommunityIcon from '@/assets/community.svg?react';
+import CallIcon from '@/assets/call.svg?react';
+import SettingsIcon from '@/assets/setting.svg?react';
 
 import { Link, useLocation } from 'react-router-dom';
 
