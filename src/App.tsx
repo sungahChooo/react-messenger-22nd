@@ -1,14 +1,15 @@
-import Call from './pages/calls/Call';
+import Call from '@/pages/calls/Call';
 import Chatting from './pages/chat/Chatting';
-import Community from './pages/community/Community';
-import FriendList from './pages/friendList/FriendList';
-import Setting from './pages/settings/Setting';
-import NavBar from './components/Navbar';
-import ChattingRoom from './pages/chat/ChattingRoom';
+import Community from '@/pages/community/Community';
+import FriendList from '@/pages/friendList/FriendList';
+import Setting from '@/pages/settings/Setting';
+import NavBar from '@/components/Navbar';
+import ChattingRoom from '@/pages/chat/ChattingRoom';
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Profile from './pages/friendList/Profile';
-import Statusbar from './components/Statusbar';
+import Profile from '@/pages/friendList/Profile';
+import Statusbar from '@/components/Statusbar';
+import FriendProfile from '@/pages/friendList/FriendProfile';
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -36,8 +37,8 @@ export default function App() {
           <Route path="/call" element={<Call />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/chattingroom/:roomId" element={<ChattingRoom />} />
-          <Route path="/profile/me" element={<Profile mode="my" />} />
-          <Route path="/profile/id" element={<Profile mode="friend" />} />
+          <Route path="/profile/me" element={<Profile />} />
+          <Route path="/profile/:id" element={<FriendProfile />} />
         </Routes>
       </AppLayout>
       {/*<Sidebar />  하단 고정 */}

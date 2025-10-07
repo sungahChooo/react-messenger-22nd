@@ -10,7 +10,7 @@ import plusIcon from '@/assets/plus.svg';
 import cameraIcon from '@/assets/camera.svg';
 import microphoneIcon from '@/assets/microphone.svg';
 import sendIcon from '@/assets/sendIcon.svg';
-import chatData from '@/data.json';
+import chatData from '@/data/chat.json';
 import likeIcon from '@/assets/like.svg';
 
 interface Message {

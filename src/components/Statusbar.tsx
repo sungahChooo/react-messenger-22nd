@@ -28,7 +28,7 @@ function Statusbar() {
     return () => clearInterval(timer);
   }, []);
   return (
-    <div className="font-pretendard fixed left-1/2 flex h-[49px] w-[375px] -translate-x-1/2 flex-row items-center justify-between bg-transparent px-4">
+    <div className="font-pretendard abolute fixed left-1/2 z-900 flex h-[49px] w-[375px] -translate-x-1/2 flex-row items-center justify-between bg-transparent px-4">
       <span className="text-[15px] font-bold">{currentTime}</span>
       <div className="flex flex-row items-center gap-2">
         <img src={dataIcon} className="h-[11px] w-[18px]" />

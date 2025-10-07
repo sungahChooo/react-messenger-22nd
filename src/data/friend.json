@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "강민수",
+    "statusMessage": "오늘 하루도 화이팅!",
+    "profileImage": "profile1.jpg",
+    "number": "010 1234 5678"
+  },
+  { "id": 6, "name": "김다연", "statusMessage": "🎶 음악 듣는 중", "number": "010 1234 5678" },
+  { "id": 7, "name": "김채연", "statusMessage": "가나다라마바사", "number": "010 1234 5678" },
+  { "id": 2, "name": "나연", "profileImage": "profile2.jpg", "number": "010 1234 5678" },
+  { "id": 16, "name": "남궁민", "statusMessage": "아자차카타파하", "number": "010 1234 5678" },
+  { "id": 19, "name": "나채연" },
+  { "id": 3, "name": "도영", "statusMessage": "😎", "profileImage": "profile3.jpg", "number": "010 1234 5678" },
+  { "id": 17, "name": "도현", "statusMessage": "ㅎㅎㅎ", "number": "010 1234 5678" },
+  { "id": 21, "name": "도경수", "profileImage": "profile4.jpg", "number": "010 1234 5678" }
+]

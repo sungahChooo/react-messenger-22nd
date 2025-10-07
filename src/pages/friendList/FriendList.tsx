@@ -3,6 +3,18 @@ import findIcon from '@/assets/search.svg';
 import addFriendIcon from '@/assets/addFriend.svg';
 import Header from '@/components/Header';
 import { useNavigate } from 'react-router-dom';
+import friendsData from '@/data/friend.json';
+import profile1 from '@/assets/profile1.jpg';
+import profile2 from '@/assets/profile2.svg';
+import profile3 from '@/assets/profile3.jpg';
+import profile4 from '@/assets/profile4.jpg';
+// 이미지 매핑 객체
+const images: Record<string, string> = {
+  'profile1.jpg': profile1,
+  'profile2.jpg': profile2,
+  'profile3.jpg': profile3,
+  'profile4.jpg': profile4,
+};
 
 function FriendList() {
   const navigate = useNavigate();
@@ -32,23 +44,26 @@ function FriendList() {
         >
           <img src={profile} alt="프로필 이미지" className="h-[65px] w-[65px]" />
           <div>
-            <div className="font-bold">내이름</div>
+            <div className="font-bold">정해인</div>
             <div className="text-sm text-gray-500">상태메시지 있는 경우입니다.</div>
           </div>
         </section>
         {/* 친구 리스트 */}
-        <ul className="mb-4 flex flex-col gap-4 px-4">
-          <p className="flex gap-3 border-b border-gray-300 px-4 py-3">ㄱ</p>
-          {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+        <ul className="flex flex-col gap-2">
+          {friendsData.map((friend) => (
             <li
-              key={i}
-              className="flex cursor-pointer items-center gap-4 px-4"
-              onClick={() => navigate(`/profile/${i}`)}
+              key={friend.id}
+              className="flex cursor-pointer items-center gap-3 px-4 py-2"
+              onClick={() => navigate(`/profile/${friend.id}`)}
             >
-              <img src={profile} className="h-[46px] w-[46px]" />
+              <img
+                src={friend.profileImage ? images[friend.profileImage] : profile}
+                alt="프로필"
+                className="h-[46px] w-[46px] rounded-full"
+              />
               <div>
-                <div className="font-bold">친구이름</div>
-                <div className="text-sm text-gray-500">상태메시지 있는 경우입니다.</div>
+                <div className="font-bold">{friend.name}</div>
+                {friend.statusMessage && <div className="text-sm text-gray-500">{friend.statusMessage}</div>}
               </div>
             </li>
           ))}
