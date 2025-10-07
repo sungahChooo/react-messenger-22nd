@@ -1,6 +1,7 @@
 import profile from '@/assets/profile.svg';
 import findIcon from '@/assets/search.svg';
 import addFriendIcon from '@/assets/addFriend.svg';
+import Header from '@/components/Header';
 import { useNavigate } from 'react-router-dom';
 
 function FriendList() {
@@ -8,17 +9,20 @@ function FriendList() {
   return (
     <div className="items font-pretendard mx-auto min-h-screen w-full max-w-[375px] bg-white pb-[65px]">
       {/* 상단 헤더 */}
-      <header className="top-[124px] mb-4 flex h-[65px] w-[375px] justify-between gap-4 p-4 px-4 opacity-100">
-        <span className="flex items-center text-[24px] font-bold">친구</span>
-        <div className="flex gap-4">
-          <button onClick={() => alert('준비중입니다.')} className="cursor-pointer">
-            <img src={findIcon} />
-          </button>
-          <button onClick={() => alert('준비중입니다.')} className="cursor-pointer">
-            <img src={addFriendIcon} />
-          </button>
-        </div>
-      </header>
+      <Header
+        title="친구"
+        right={
+          <div className="flex cursor-pointer gap-4">
+            <button onClick={() => alert('준비중입니다.')}>
+              <img src={findIcon} alt="search" />
+            </button>
+            <button>
+              <img src={addFriendIcon} alt="camera" />
+            </button>
+          </div>
+        }
+      />
+
       {/* 내 프로필 */}
       <section
         className="my-4 flex cursor-pointer items-center gap-4 px-4"
