@@ -37,12 +37,14 @@ export default function ChattingRoom() {
   };
 
   // 스크롤 끝부분 참조
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const prevLengthRef = useRef(messages.length);
   // 메시지 변경될 때마다 스크롤 끝으로 이동
   useEffect(() => {
-    if (messagesEndRef.current) {
+    if (messages.length > prevLengthRef.current && messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+    prevLengthRef.current = messages.length;
   }, [messages]);
 
   // 처음 로드될 때 localStorage 확인
@@ -89,7 +91,7 @@ export default function ChattingRoom() {
     setInput('');
   };
 
-  // 엔터키 전송 및 한글 조합 중일 때  전송 방지
+  // 엔터키 전송 및 한글 조합 중일 때 전송 방지
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.nativeEvent.isComposing) handleSend();
   };
@@ -120,12 +122,12 @@ export default function ChattingRoom() {
       {/* 상단 헤더 */}
       <Header
         title={
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-[17px]">
             <span onClick={() => navigate('/chat')} className="cursor-pointer">
               <img src={beforeIcon} alt="before" className="h-6 w-6" />
             </span>
             <img src={profileIcon} alt="profile" className="h-9 w-9 rounded-full" />
-            <h2>친구 이름</h2>
+            <span>친구 이름</span>
           </div>
         }
         right={
@@ -144,7 +146,7 @@ export default function ChattingRoom() {
       />
 
       {/* 채팅 메시지 */}
-      <div className="top-[70px] mx-3 flex max-w-[345px] flex-col gap-1 overflow-y-auto">
+      <div className="top-[80px] mx-3 mt-12 flex max-w-[345px] flex-col gap-1 overflow-y-auto">
         <div className="flex justify-center">
           <span className="mb-6 h-[32px] w-[115px] rounded-2xl bg-green-50 px-2 py-2 text-center text-xs font-normal text-gray-500">
             2024년 6월 19일{' '}

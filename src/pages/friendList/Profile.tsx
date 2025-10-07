@@ -14,7 +14,7 @@ export default function Profile({ mode }: ProfileProps) {
   const { id } = useParams(); // 친구 id 같은 것 ("/profile/:id"에서 가져옴)
 
   return (
-    <div className="font-pretendard mx-auto flex min-h-screen w-full max-w-[375px] flex-col place-content-between bg-[url(/backgroundImage.jpg)]">
+    <div className="font-pretendard mx-auto flex min-h-screen w-full max-w-[375px] flex-col place-content-between bg-[url(/backgroundImage.jpg)] bg-scroll">
       {/* x버튼 */}
       <div className="flex h-[58px] w-full items-center">
         <img

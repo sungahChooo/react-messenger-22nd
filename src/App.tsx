@@ -3,11 +3,12 @@ import Chatting from './pages/chat/Chatting';
 import Community from './pages/community/Community';
 import FriendList from './pages/friendList/FriendList';
 import Setting from './pages/settings/Setting';
-import Sidebar from './pages/navbar/Navbar';
+import NavBar from './components/Navbar';
 import ChattingRoom from './pages/chat/ChattingRoom';
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Profile from './pages/friendList/Profile';
+import Statusbar from './components/Statusbar';
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -16,7 +17,8 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative">
-      {showSidebar && <Sidebar />}
+      <Statusbar />
+      {showSidebar && <NavBar />}
       <div className="min-h-screen">{children}</div>
     </div>
   );
