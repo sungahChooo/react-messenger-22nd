@@ -46,7 +46,7 @@ function Chatting() {
                     <span className="font-bold">채팅방 이름</span> {/* 채팅방 이름 */}
                     <span className="text-xs text-gray-400">11:59 AM</span>
                   </p>
-                  <div className="text-sm text-gray-500">마지막 메시지 내용</div> {/* 마지막 메시지 내용 */}
+                  <div className="text-sm text-gray-500">{data.message}</div> {/* 마지막 메시지 내용 */}
                 </div>
               </li>
             ))}
