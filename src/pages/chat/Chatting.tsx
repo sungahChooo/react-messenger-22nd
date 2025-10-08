@@ -5,9 +5,11 @@ import camerIcon from '@/assets/camera.svg';
 import chattingRoomIcon from '@/assets/chattingRoom.svg';
 import profileICon from '@/assets/profile.svg';
 import { useNavigate } from 'react-router-dom';
+import chatDataJson from '@/data/chat.json';
 
 function Chatting() {
   const navigate = useNavigate();
+  const chatData = [...chatDataJson];
   return (
     <div className="items font-pretendard mx-auto min-h-screen w-full max-w-[375px] bg-white pb-[65px]">
       {/* 상단 헤더 재사용*/}
@@ -36,7 +38,7 @@ function Chatting() {
         {/* 채팅방 리스트 */}
         <div>
           <ul className="mb-4 flex cursor-pointer flex-col gap-6 px-4">
-            {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+            {chatData.map((data, i) => (
               <li key={i} className="flex items-center gap-4" onClick={() => navigate(`/chattingroom/${i}`)}>
                 <img src={profileICon} className="h-[56px]" /> {/* 채팅방 이미지 */}
                 <div className="w-full">

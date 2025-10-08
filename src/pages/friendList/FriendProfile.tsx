@@ -7,7 +7,7 @@ import facetimeIcon from '@/assets/facetimeIcon.svg';
 import friendsData from '@/data/friend.json';
 import { useParams } from 'react-router-dom';
 import profile1 from '@/assets/profile1.jpg';
-import profile2 from '@/assets/profile2.svg';
+import profile2 from '@/assets/profile2.jpg';
 import profile3 from '@/assets/profile3.jpg';
 import profile4 from '@/assets/profile4.jpg';
 
