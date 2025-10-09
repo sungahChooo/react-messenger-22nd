@@ -45,8 +45,8 @@ function FriendList() {
         >
           <img src={profile} alt="프로필 이미지" className="h-[65px] w-[65px]" />
           <div>
-            <div className="font-bold">정해인</div>
-            <div className="text-sm text-gray-500">상태메시지 있는 경우입니다.</div>
+            <div className="text-2xl font-semibold">정해인</div>
+            <div className="text-sm font-medium text-gray-500">상태메시지 있는 경우입니다.</div>
           </div>
         </section>
         {/* 친구 리스트 */}
@@ -63,7 +63,7 @@ function FriendList() {
                 )}
 
                 <div
-                  className="flex cursor-pointer flex-row gap-3 px-4"
+                  className="flex cursor-pointer flex-row items-center gap-3 px-4"
                   onClick={() => navigate(`/profile/${friend.id}`)}
                 >
                   <img
@@ -72,8 +72,10 @@ function FriendList() {
                     className="h-[46px] w-[46px] rounded-full"
                   />
                   <p>
-                    <span className="font-bold">{friend.name}</span>
-                    {friend.statusMessage && <div className="text-sm text-gray-500">{friend.statusMessage}</div>}
+                    <span className="text-lg font-medium">{friend.name}</span>
+                    {friend.statusMessage && (
+                      <div className="text-sm text-xs font-medium text-gray-500">{friend.statusMessage}</div>
+                    )}
                   </p>
                 </div>
               </li>
