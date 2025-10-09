@@ -4,7 +4,7 @@ import settingIcon from '@/assets/settingHeader.svg';
 import Warning from '@/components/warning';
 function Call() {
   return (
-    <div className="items mx-auto min-h-screen w-full max-w-[375px] bg-white pb-[65px]">
+    <div className="items font-pretendard mx-auto box-border min-h-screen w-full max-w-[375px] bg-white pb-[65px]">
       {/* 상단 헤더 재사용*/}
       <Header
         title="통화"

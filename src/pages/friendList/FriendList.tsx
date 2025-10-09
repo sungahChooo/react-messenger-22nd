@@ -26,19 +26,15 @@ function FriendList() {
         title="친구"
         right={
           <div className="flex cursor-pointer gap-4">
-            <button onClick={() => alert('준비중입니다.')}>
-              <img src={findIcon} alt="search" />
-            </button>
-            <button>
-              <img src={addFriendIcon} alt="camera" />
-            </button>
+            <img src={findIcon} alt="search" className="h-[24px] w-[24px]" />
+            <img src={addFriendIcon} alt="camera" className="h-[24px] w-[24px]" />
           </div>
         }
       />
-      <div className="mt-12">
+      <div className="mt-12 w-full max-w-[375px]">
         {/* 내 프로필 */}
         <section
-          className="my-4 flex cursor-pointer items-center gap-4 px-4"
+          className="my-4 flex cursor-pointer items-center gap-2 px-4"
           onClick={() => {
             navigate('/profile/me');
           }}
@@ -50,7 +46,7 @@ function FriendList() {
           </div>
         </section>
         {/* 친구 리스트 */}
-        <ul className="flex flex-col gap-3">
+        <ul className="mb-5 flex w-full flex-col gap-3">
           {friendsData.map((friend, index) => {
             const sectionIndex = Math.floor(index / 3);
             const showHeader = index % 3 === 0;
@@ -71,10 +67,10 @@ function FriendList() {
                     alt="프로필"
                     className="h-[46px] w-[46px] rounded-full"
                   />
-                  <p>
+                  <p className="flex flex-col">
                     <span className="text-lg font-medium">{friend.name}</span>
                     {friend.statusMessage && (
-                      <div className="text-sm text-xs font-medium text-gray-500">{friend.statusMessage}</div>
+                      <span className="text-sm text-xs font-medium text-gray-500">{friend.statusMessage}</span>
                     )}
                   </p>
                 </div>

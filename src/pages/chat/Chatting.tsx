@@ -70,7 +70,7 @@ function Chatting() {
   };
 
   return (
-    <div className="items font-pretendard mx-auto min-h-screen w-full max-w-[375px] bg-white pb-[65px]">
+    <div className="items font-pretendard mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden bg-white pb-[65px]">
       {/* 상단 헤더 재사용*/}
       <Header
         title="채팅"
@@ -109,7 +109,7 @@ function Chatting() {
                   <img src={profileICon} className="h-[56px]" /> {/* 채팅방 이미지 */}
                   <div className="w-full">
                     <p className="flex justify-between">
-                      <span className="font-bold">
+                      <span className="flex items-center font-bold">
                         {partnerName}
                         <button
                           onClick={(e) => {
@@ -129,7 +129,6 @@ function Chatting() {
                         {room.unread}f
                       </span>
                     </div>
-                    {/* 마지막 메시지 내용 */}
                   </div>
                 </li>
               );
