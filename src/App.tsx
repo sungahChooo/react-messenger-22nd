@@ -15,10 +15,12 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const hideSidebarPaths = ['/chattingroom', '/profile']; // 숨기고 싶은 페이지 경로
   const showSidebar = !hideSidebarPaths.some((path) => location.pathname.startsWith(path)); //pathname이 /myprofile/123 이런식이어도 적용됨
+  const isChatRoom = location.pathname.startsWith('/chattingroom');
+  const isProfile = location.pathname.startsWith('/profile');
 
   return (
     <div className="relative">
-      <Statusbar />
+      <Statusbar isChatRoom={isChatRoom} isProfile={isProfile} />
       {showSidebar && <NavBar />}
       <div className="min-h-screen">{children}</div>
     </div>

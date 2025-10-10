@@ -20,7 +20,7 @@ function FriendList() {
   const navigate = useNavigate();
   const sectionHeaders = ['ㄱ', 'ㄴ', 'ㄷ'];
   return (
-    <div className="items font-pretendard mx-auto min-h-screen w-full max-w-[375px] bg-white pb-[65px]">
+    <div className="items font-pretendard absolute top-0 left-1/2 z-800 min-h-screen w-full max-w-[375px] -translate-x-1/2 bg-white pb-[65px]">
       {/* 상단 헤더 */}
       <Header
         title="친구"
