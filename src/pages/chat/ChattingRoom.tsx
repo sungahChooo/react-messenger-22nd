@@ -143,6 +143,7 @@ export default function ChattingRoom() {
             </button>
           </div>
         }
+        bgColor="#d9d9d9"
       />
 
       {/* 채팅 메시지 */}

@@ -87,6 +87,7 @@ function Chatting() {
             </button>
           </div>
         }
+        bgColor="white"
       />
       <div className="mt-12">
         {/* 배너 */}

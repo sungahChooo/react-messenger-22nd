@@ -30,8 +30,9 @@ function FriendList() {
             <img src={addFriendIcon} alt="camera" className="h-[24px] w-[24px]" />
           </div>
         }
+        bgColor="white"
       />
-      <div className="mt-12 w-full max-w-[375px]">
+      <div className="mt-13 w-full max-w-[375px]">
         {/* 내 프로필 */}
         <section
           className="my-4 flex cursor-pointer items-center gap-2 px-4"
