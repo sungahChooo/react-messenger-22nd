@@ -13,7 +13,7 @@ export default function ChattingRoom() {
   const [input, setInput] = useState('');
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const prevLengthRef = useRef(messages.length);
+  const prevLengthRef = useRef(0);
   useEffect(() => {
     if (messages.length > prevLengthRef.current) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
