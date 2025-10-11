@@ -15,11 +15,3 @@ export interface ChatRoom {
   isPinned: boolean;
   unread?: number;
 }
-export interface Message {
-  sender: string;
-  message: string;
-  time?: string;
-  roomId: string;
-  likes?: number;
-  likedByMe?: boolean;
-}

@@ -1,4 +1,4 @@
-import type { ChatMessage, ChatRoom, Message } from '@/types/chat';
+import type { ChatMessage, ChatRoom } from '@/types/chat';
 
 export function groupMessagesByRoom(chatData: ChatMessage[]): ChatRoom[] {
   const roomsMap: Record<string, ChatRoom> = {};
@@ -34,12 +34,12 @@ export function formatTime(date: Date): string {
 }
 
 // 메시지 저장
-export function saveMessages(roomId: string, messages: Message[]) {
+export function saveMessages(roomId: string, messages: ChatMessage[]) {
   localStorage.setItem(`chatMessages_${roomId}`, JSON.stringify(messages));
 }
 
 // 메시지 불러오기
-export function loadMessages(roomId: string, fallback: Message[]): Message[] {
+export function loadMessages(roomId: string, fallback: ChatMessage[]): ChatMessage[] {
   const stored = localStorage.getItem(`chatMessages_${roomId}`);
   return stored ? JSON.parse(stored) : fallback;
 }
