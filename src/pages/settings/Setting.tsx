@@ -1,24 +1,10 @@
-import searchIcon from '@/assets/search.svg';
-import Header from '@/components/Header';
-import settingIcon from '@/assets/settingHeader.svg';
 import Warning from '@/components/warning';
+import SettingHeader from './SettingHeader';
+
 function Setting() {
   return (
-    <div className="items mx-auto min-h-screen w-full max-w-[375px] bg-white pb-[65px]">
-      {/* 상단 헤더 재사용*/}
-      <Header
-        title="설정"
-        right={
-          <div className="flex cursor-pointer gap-4">
-            <button onClick={() => alert('준비중입니다.')}>
-              <img src={searchIcon} alt="search" />
-            </button>
-            <button>
-              <img src={settingIcon} alt="camera" />
-            </button>
-          </div>
-        }
-      />
+    <div className="items absolute top-0 left-1/2 z-800 min-h-screen w-full max-w-[375px] -translate-x-1/2 bg-white pb-[65px]">
+      <SettingHeader />
       {/*경고 화면 */}
       <div className="flex h-[550px] flex-col items-center justify-center">
         <Warning />

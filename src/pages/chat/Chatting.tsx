@@ -30,7 +30,7 @@ export default function Chatting() {
           <img src={banner} className="h-[71px] w-[343px]" />
         </div>
 
-        <ul className="flex flex-col gap-6 px-4">
+        <ul className="mb-4 flex flex-col gap-6 px-4">
           {chatRooms.map((room) => (
             <ChatListItem
               key={room.roomId}

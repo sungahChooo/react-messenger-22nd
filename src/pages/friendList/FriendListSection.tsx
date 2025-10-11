@@ -17,39 +17,37 @@ export default function FriendListSection() {
   const navigate = useNavigate();
   const sectionHeaders = ['ㄱ', 'ㄴ', 'ㄷ'];
   return (
-    <div className="w-full max-w-[375px]">
-      <ul className="mb-5 flex w-full flex-col gap-3">
-        {friendsData.map((friend, index) => {
-          const sectionIndex = Math.floor(index / 3);
-          const showHeader = index % 3 === 0;
-          return (
-            <li key={friend.id} className="flex flex-col gap-3">
-              {showHeader && (
-                <p className="mx-4 my-2 border-b border-gray-100 pb-2 text-sm font-semibold text-gray-600">
-                  {sectionHeaders[sectionIndex] || ''}
-                </p>
-              )}
+    <ul className="mb-4 flex w-full flex-col gap-3">
+      {friendsData.map((friend, index) => {
+        const sectionIndex = Math.floor(index / 3);
+        const showHeader = index % 3 === 0;
+        return (
+          <li key={friend.id} className="flex flex-col gap-3">
+            {showHeader && (
+              <p className="mx-4 my-2 border-b border-gray-100 pb-2 text-sm font-semibold text-gray-600">
+                {sectionHeaders[sectionIndex] || ''}
+              </p>
+            )}
 
-              <div
-                className="flex cursor-pointer flex-row items-center gap-3 px-4"
-                onClick={() => navigate(`/profile/${friend.id}`)}
-              >
-                <img
-                  src={friend.profileImage ? images[friend.profileImage] : profile}
-                  alt="프로필"
-                  className="h-[46px] w-[46px] rounded-full"
-                />
-                <p className="flex flex-col">
-                  <span className="text-lg font-medium">{friend.name}</span>
-                  {friend.statusMessage && (
-                    <span className="text-sm text-xs font-medium text-gray-500">{friend.statusMessage}</span>
-                  )}
-                </p>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+            <div
+              className="flex cursor-pointer flex-row items-center gap-3 px-4"
+              onClick={() => navigate(`/profile/${friend.id}`)}
+            >
+              <img
+                src={friend.profileImage ? images[friend.profileImage] : profile}
+                alt="프로필"
+                className="h-[46px] w-[46px] rounded-full"
+              />
+              <p className="flex flex-col">
+                <span className="text-lg font-medium">{friend.name}</span>
+                {friend.statusMessage && (
+                  <span className="text-sm text-xs font-medium text-gray-500">{friend.statusMessage}</span>
+                )}
+              </p>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
