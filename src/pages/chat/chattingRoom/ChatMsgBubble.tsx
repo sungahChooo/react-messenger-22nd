@@ -14,13 +14,19 @@ export default function ChatMessageBubble({ message, onLike }: ChatMessageBubble
 
       <div className={`flex flex-col ${message.sender === 'me' ? 'items-end' : 'items-start'}`}>
         {message.sender === 'friend' && <span className="mb-1 text-xs text-gray-500">친구 이름</span>}
-        <div className="group flex flex-col items-start gap-1">
-          <div
-            className={`max-w-[220px] rounded-tl-sm rounded-tr-xl rounded-br-xl rounded-bl-xl px-3 py-1 break-all ${
-              message.sender === 'me' ? 'bg-green-50' : 'bg-white'
-            }`}
-          >
-            {message.message}
+        {/*메시지 버블 */}
+        <div className="group flex flex-col items-start gap-2">
+          <div className="flex flex-row items-end gap-1">
+            {message.sender === 'me' && <span className="text-xs text-gray-400">{message.time}</span>}
+
+            <div
+              className={`max-w-[220px] rounded-tl-sm rounded-tr-xl rounded-br-xl rounded-bl-xl px-3 py-1 break-all ${
+                message.sender === 'me' ? 'bg-green-50' : 'bg-white'
+              }`}
+            >
+              {message.message}
+            </div>
+            {message.sender === 'friend' && <span className="text-xs text-gray-400">{message.time}</span>}
           </div>
           {message.sender === 'friend' && (
             <div
