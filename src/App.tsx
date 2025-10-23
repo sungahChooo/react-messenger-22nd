@@ -7,7 +7,7 @@ import NavBar from '@/components/Navbar';
 import ChattingRoom from '@/pages/chat/chattingRoom/ChattingRoom';
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Profile from '@/pages/friendList/profile/Profile';
+import Profile from '@/pages/friendList/profile/MyProfile';
 import Statusbar from '@/components/Statusbar';
 import FriendProfile from '@/pages/friendList/profile/FriendProfile';
 

@@ -10,6 +10,9 @@ import profile2 from '@/assets/profile2.jpg';
 import profile3 from '@/assets/profile3.jpg';
 import profile4 from '@/assets/profile4.jpg';
 import XButton from './XButton';
+import BackgroundLayer from './BackgroundLayer';
+import ProfilePageButton from './ProfilePageButton';
+import ProfileCard from './ProfileCard';
 
 // 이미지 매핑
 const images: Record<string, string> = {
@@ -18,8 +21,13 @@ const images: Record<string, string> = {
   'profile3.jpg': profile3,
   'profile4.jpg': profile4,
 };
+const friendButtons = [
+  { icon: profileChatIcon, label: '1:1채팅', onClick: () => alert('1:1 채팅 준비중') },
+  { icon: callIcon, label: '오디오', onClick: () => alert('오디오 준비중') },
+  { icon: facetimeIcon, label: '비디오', onClick: () => alert('비디오 준비중') },
+];
 
-function FriendProfile() {
+export default function FriendProfile() {
   const { id } = useParams<{ id: string }>();
   const friend = friendsData.find((f) => f.id === Number(id));
   if (!friend) {
@@ -29,40 +37,18 @@ function FriendProfile() {
       </div>
     );
   }
-  const profileSrc = friend.profileImage ? images[friend.profileImage] : profileImage;
   return (
     <div className="font-pretendard mx-auto flex min-h-screen w-full max-w-[375px] flex-col place-content-between">
-      {/*배경 레이어 */}
-      <div className="absolute inset-0 z-0 mx-auto flex min-h-screen w-full max-w-[375px] bg-[url('/friendBg.jpg')] bg-cover opacity-70"></div>
+      <BackgroundLayer imageUrl="/friendBg.jpg" opacity={0.7} />
       <XButton />
-      {/* 프로필 박스 + 버튼 영역이 화면 하단에 오도록 정렬 */}
       <div className="relative z-0 mb-8 flex flex-col items-center">
-        {/* 프로필 박스 */}
-        <div className="mb-4 flex flex-col justify-center gap-4">
-          <img src={profileSrc} alt="profile" className="h-[123px] w-[123px] rounded-full" />
-          <p className="flex flex-col items-center gap-1">
-            <span className="text-2xl font-semibold text-white">{friend.name}</span>
-            <span className="text-base font-normal text-white">{friend.number}</span>
-          </p>
-        </div>
-
-        {/* 버튼 영역 */}
-        <div className="flex w-full items-center justify-center gap-2">
-          <button className="bg-light-yellow flex h-[70px] w-[109px] cursor-pointer flex-col items-center justify-center gap-1 rounded-xl p-2 text-[14px] font-normal text-black opacity-70">
-            <img src={profileChatIcon} />
-            1:1채팅
-          </button>
-          <button className="bg-light-yellow flex h-[70px] w-[109px] cursor-pointer flex-col items-center justify-center gap-1 rounded-xl p-2 text-[14px] font-normal text-black opacity-70">
-            <img src={callIcon} />
-            오디오
-          </button>
-          <button className="bg-light-yellow flex h-[70px] w-[109px] cursor-pointer flex-col items-center justify-center gap-1 rounded-xl p-2 text-[14px] font-normal text-black opacity-70">
-            <img src={facetimeIcon} />
-            비디오
-          </button>
-        </div>
+        <ProfileCard
+          name={friend.name}
+          number={friend.number || '알 수 없음'}
+          profileImage={friend.profileImage ? images[friend.profileImage] : profileImage}
+        />
+        <ProfilePageButton buttons={friendButtons} />
       </div>
     </div>
   );
 }
-export default FriendProfile;
