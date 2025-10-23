@@ -16,7 +16,7 @@ export default function ChattingRoomHeader() {
             <img src={beforeIcon} alt="before" className="h-6 w-6" />
           </span>
           <img src={profileIcon} alt="profile" className="h-9 w-9 rounded-full" />
-          <span>친구 이름</span>
+          <span>{}</span>
         </div>
       }
       right={
