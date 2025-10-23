@@ -1,5 +1,4 @@
 // src/pages/Profile.tsx
-import xIcon from '@/assets/xIcon.svg';
 import profileImage from '@/assets/profile.svg';
 import profileChatIcon from '@/assets/profileChat.svg';
 import callIcon from '@/assets/callChattingRoom.svg';
@@ -10,6 +9,7 @@ import profile1 from '@/assets/profile1.jpg';
 import profile2 from '@/assets/profile2.jpg';
 import profile3 from '@/assets/profile3.jpg';
 import profile4 from '@/assets/profile4.jpg';
+import XButton from './XButton';
 
 // 이미지 매핑
 const images: Record<string, string> = {
@@ -34,14 +34,7 @@ function FriendProfile() {
     <div className="font-pretendard mx-auto flex min-h-screen w-full max-w-[375px] flex-col place-content-between">
       {/*배경 레이어 */}
       <div className="absolute inset-0 z-0 mx-auto flex min-h-screen w-full max-w-[375px] bg-[url('/friendBg.jpg')] bg-cover opacity-70"></div>
-      {/* x버튼 */}
-      <div className="relative z-0 mt-10 flex h-[58px] w-full items-center">
-        <img
-          src={xIcon}
-          className="m-1 ml-[16px] h-[18px] w-[18px] cursor-pointer"
-          onClick={() => window.history.back()}
-        />
-      </div>
+      <XButton />
       {/* 프로필 박스 + 버튼 영역이 화면 하단에 오도록 정렬 */}
       <div className="relative z-0 mb-8 flex flex-col items-center">
         {/* 프로필 박스 */}
