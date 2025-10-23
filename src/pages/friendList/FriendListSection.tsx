@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import friendsData from '@/data/friend.json';
+import friendsData from '@/data/user.json';
 import profile from '@/assets/profile.svg';
 import profile1 from '@/assets/profile1.jpg';
 import profile2 from '@/assets/profile2.jpg';

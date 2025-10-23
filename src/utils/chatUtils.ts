@@ -1,18 +1,6 @@
-import type { ChatMessage, ChatRoom } from '@/types/chat';
-
-export function groupMessagesByRoom(chatData: ChatMessage[]): ChatRoom[] {
-  const roomsMap: Record<string, ChatRoom> = {};
-
-  chatData.forEach((msg) => {
-    if (!roomsMap[msg.roomId]) {
-      roomsMap[msg.roomId] = { roomId: msg.roomId, messages: [], isPinned: false };
-    }
-    roomsMap[msg.roomId].messages.push(msg);
-    if (msg.isPinned) roomsMap[msg.roomId].isPinned = true;
-  });
-
-  return Object.values(roomsMap);
-}
+import type { ChatRoom, ChatMessage } from '@/types/chat';
+import type { User } from '@/types/user';
+import users from '@/data/user.json';
 
 export function sortChatRooms(rooms: ChatRoom[]): ChatRoom[] {
   return [...rooms].sort((a, b) => {
@@ -23,23 +11,22 @@ export function sortChatRooms(rooms: ChatRoom[]): ChatRoom[] {
     return bLast - aLast;
   });
 }
-// 시간 포맷 함수
-export function formatTime(date: Date): string {
+
+export const formatTime = (date: Date) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  const formattedHour = hours % 12 === 0 ? 12 : hours % 12;
-  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-  return `${formattedHour}:${formattedMinutes} ${ampm}`;
-}
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+};
 
-// 메시지 저장
-export function saveMessages(roomId: string, messages: ChatMessage[]) {
-  localStorage.setItem(`chatMessages_${roomId}`, JSON.stringify(messages));
-}
+export const saveMessages = (roomId: string, messages: ChatMessage[]) => {
+  localStorage.setItem(`chat_${roomId}`, JSON.stringify(messages));
+};
 
-// 메시지 불러오기
-export function loadMessages(roomId: string, fallback: ChatMessage[]): ChatMessage[] {
-  const stored = localStorage.getItem(`chatMessages_${roomId}`);
-  return stored ? JSON.parse(stored) : fallback;
+export const loadMessages = (roomId: string, defaultMessages: ChatMessage[] = []): ChatMessage[] => {
+  const saved = localStorage.getItem(`chat_${roomId}`);
+  return saved ? JSON.parse(saved) : defaultMessages;
+};
+
+export function getParticipantProfiles(room: ChatRoom, myId: number): User[] {
+  return room.participants.filter((id) => id !== myId).map((id) => users.find((u) => u.id === id));
 }

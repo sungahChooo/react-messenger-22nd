@@ -3,7 +3,7 @@ import profileImage from '@/assets/profile.svg';
 import profileChatIcon from '@/assets/profileChat.svg';
 import callIcon from '@/assets/callChattingRoom.svg';
 import facetimeIcon from '@/assets/facetimeIcon.svg';
-import friendsData from '@/data/friend.json';
+import friendsData from '@/data/user.json';
 import { useParams } from 'react-router-dom';
 import profile1 from '@/assets/profile1.jpg';
 import profile2 from '@/assets/profile2.jpg';
@@ -12,7 +12,7 @@ import profile4 from '@/assets/profile4.jpg';
 import XButton from './XButton';
 import BackgroundLayer from './BackgroundLayer';
 import ProfilePageButton from './ProfilePageButton';
-import ProfileCard from './ProfileCard';
+import ProfileCard from './ProfileBox';
 
 // 이미지 매핑
 const images: Record<string, string> = {

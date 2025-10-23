@@ -5,7 +5,7 @@ import editIcon from '@/assets/edit.svg';
 import profileChatIcon from '@/assets/profileChat.svg';
 import instagramIcon from '@/assets/instagram.svg';
 import profileImage from '@/assets/profile.svg';
-import ProfileCard from './ProfileCard';
+import ProfileCard from './ProfileBox';
 
 const myButtons = [
   { icon: profileChatIcon, label: '나와의 채팅', onClick: () => alert('채팅 준비중') },

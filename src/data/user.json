@@ -1,6 +1,13 @@
 [
   {
     "id": 1,
+    "name": "정해인",
+    "statusMessage": "안녕하세요!",
+    "profileImage": "",
+    "number": "010 8992 0743"
+  },
+  {
+    "id": 4,
     "name": "강민수",
     "statusMessage": "오늘 하루도 화이팅!",
     "profileImage": "profile1.jpg",

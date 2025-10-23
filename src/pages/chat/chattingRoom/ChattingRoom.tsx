@@ -38,9 +38,13 @@ export default function ChattingRoom() {
     });
     setInput('');
   };
+
+  //엔터키로도 메시지 전송 가능, 한글 끝글자 조합시 전송 안되게 처리
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.nativeEvent.isComposing) handleSend();
   };
+
+  //메시지 공감 기능
   const handleLike = (index: number) => {
     setMessages((prev) => {
       const updated = prev.map((msg, i) =>

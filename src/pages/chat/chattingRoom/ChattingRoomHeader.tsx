@@ -1,9 +1,9 @@
 import Header from '@/components/Header';
-import beforeIcon from '../../../assets/before.svg';
-import profileIcon from '../../../assets/profile.svg';
-import searchIcon from '../../../assets/search.svg';
-import callChattingRoomIcon from '../../../assets/call.svg';
-import faceTimeIcon from '../../../assets/facetimeIcon.svg';
+import beforeIcon from '@/assets/before.svg';
+import profileIcon from '@/assets/profile.svg';
+import searchIcon from '@/assets/search.svg';
+import callChattingRoomIcon from '@/assets/call.svg';
+import faceTimeIcon from '@/assets/facetimeIcon.svg';
 import { useNavigate } from 'react-router-dom';
 
 export default function ChattingRoomHeader() {

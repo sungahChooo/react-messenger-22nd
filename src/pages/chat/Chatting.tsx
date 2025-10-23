@@ -1,18 +1,16 @@
-// src/pages/chat/Chatting.tsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import banner from '@/assets/banner.svg';
 import chatDataJson from '@/data/chat.json';
 import ChattingHeader from '@/pages/chat/ChattingHeader';
 import ChatListItem from '@/pages/chat/ChatListItem';
-import type { ChatRoom, ChatMessage } from '@/types/chat';
-import { groupMessagesByRoom, sortChatRooms } from '@/utils/chatUtils';
+import type { ChatRoom } from '@/types/chat';
+import { sortChatRooms } from '@/utils/chatUtils';
 
 export default function Chatting() {
   const navigate = useNavigate();
-  const myName = '나';
 
-  const initialRooms = sortChatRooms(groupMessagesByRoom(chatDataJson as ChatMessage[]));
+  const initialRooms = sortChatRooms(chatDataJson as ChatRoom[]);
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>(initialRooms);
 
   const togglePin = (roomId: string) => {
@@ -35,7 +33,7 @@ export default function Chatting() {
             <ChatListItem
               key={room.roomId}
               room={room}
-              myName={myName}
+              myId={1}
               onClick={() => navigate(`/chattingroom/${room.roomId}`)}
               onTogglePin={togglePin}
             />
