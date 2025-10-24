@@ -4,6 +4,7 @@
     "participants": [1, 2, 3, 4],
     "isPinned": true,
     "unread": 1,
+    "lastMessage": "반갑습니다!",
     "messages": [
       {
         "roomId": "1",
@@ -21,6 +22,7 @@
     "participants": [1, 6, 17],
     "isPinned": true,
     "unread": 2,
+    "lastMessage": "잘 부탁드립니다!",
     "messages": [
       {
         "roomId": "2",
@@ -39,6 +41,8 @@
     "participants": [1, 7],
     "isPinned": false,
     "unread": 0,
+    "lastMessage": "좋아요, 확인할게요.",
+
     "messages": [
       {
         "roomId": "3",
@@ -63,6 +67,8 @@
     "participants": [1, 2, 21],
     "isPinned": false,
     "unread": 0,
+    "lastMessage": "ㅎㅎ",
+
     "messages": [
       {
         "roomId": "4",
@@ -81,6 +87,7 @@
     "participants": [1, 16],
     "isPinned": false,
     "unread": 0,
+    "lastMessage": "확인했습니다.",
     "messages": [
       {
         "roomId": "5",
@@ -98,6 +105,7 @@
     "participants": [1, 19],
     "isPinned": false,
     "unread": 0,
+    "lastMessage": "안녕하세요~",
     "messages": [
       {
         "roomId": "6",
@@ -115,6 +123,7 @@
     "participants": [1, 3],
     "isPinned": false,
     "unread": 0,
+    "lastMessage": "좋아요, 테스트 완료!",
     "messages": [
       {
         "roomId": "7",

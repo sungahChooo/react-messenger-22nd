@@ -1,12 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "정해인",
-    "statusMessage": "안녕하세요!",
-    "profileImage": "",
-    "number": "010 8992 0743"
-  },
-  {
     "id": 4,
     "name": "강민수",
     "statusMessage": "오늘 하루도 화이팅!",
@@ -18,7 +11,7 @@
   { "id": 2, "name": "나연", "profileImage": "profile2.jpg", "number": "010 1234 5678" },
   { "id": 16, "name": "남궁민", "statusMessage": "아자차카타파하", "number": "010 1234 5678" },
   { "id": 19, "name": "나채연" },
+  { "id": 21, "name": "도경수", "profileImage": "profile4.jpg", "number": "010 1234 5678" },
   { "id": 3, "name": "도영", "statusMessage": "😎", "profileImage": "profile3.jpg", "number": "010 1234 5678" },
-  { "id": 17, "name": "도현", "statusMessage": "ㅎㅎㅎ", "number": "010 1234 5678" },
-  { "id": 21, "name": "도경수", "profileImage": "profile4.jpg", "number": "010 1234 5678" }
+  { "id": 17, "name": "도현", "statusMessage": "ㅎㅎㅎ", "number": "010 1234 5678" }
 ]

@@ -5,11 +5,15 @@ import ChattingRoomHeader from './ChattingRoomHeader';
 import ChatMessageBubble from './ChatMsgBubble';
 import ChatInput from './ChatRoomInput';
 import chatData from '@/data/chat.json';
+import users from '@/data/user.json';
 import { formatTime, saveMessages, loadMessages } from '@/utils/chatUtils';
 
 export default function ChattingRoom() {
   const { roomId } = useParams<{ roomId: string }>();
-  const [messages, setMessages] = useState<ChatMessage[]>(() => loadMessages(roomId!, chatData));
+  const myId = 1; // 내 ID
+  const room = chatData.find((r) => r.roomId === roomId);
+
+  const [messages, setMessages] = useState<ChatMessage[]>(() => loadMessages(roomId!, room?.messages ?? []));
   const [input, setInput] = useState('');
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -24,7 +28,7 @@ export default function ChattingRoom() {
   const handleSend = () => {
     if (!input.trim() || !roomId) return;
     const newMessage: ChatMessage = {
-      sender: 'me',
+      sender: myId,
       message: input,
       time: formatTime(new Date()),
       roomId,
@@ -39,12 +43,10 @@ export default function ChattingRoom() {
     setInput('');
   };
 
-  //엔터키로도 메시지 전송 가능, 한글 끝글자 조합시 전송 안되게 처리
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.nativeEvent.isComposing) handleSend();
   };
 
-  //메시지 공감 기능
   const handleLike = (index: number) => {
     setMessages((prev) => {
       const updated = prev.map((msg, i) =>
@@ -55,13 +57,16 @@ export default function ChattingRoom() {
     });
   };
 
+  // 내 ID 제외하고 상대 정보 가져오기
+  const otherUserId = room?.participants.find((id) => id !== myId);
+  const otherUser = users.find((u) => u.id === otherUserId);
   return (
     <div className="bg-light-gray font-pretendard mx-auto min-h-screen w-full max-w-[375px] pb-[65px]">
-      <ChattingRoomHeader />
+      {otherUser && <ChattingRoomHeader participantName={otherUser.name} profileImage={otherUser.profileImage} />}
       <div className="mx-3 mt-13 flex max-w-[345px] flex-col gap-1 overflow-y-auto">
         <div className="flex justify-center">
           <span className="mb-6 h-[32px] w-[115px] rounded-2xl bg-green-50 px-2 py-2 text-center text-xs font-normal text-gray-500">
-            2024년 6월 19일{' '}
+            2024년 6월 19일
           </span>
         </div>
         {messages.map((msg, idx) => (

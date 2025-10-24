@@ -10,6 +10,7 @@ export interface ChatMessage {
 export interface ChatRoom {
   roomId: string;
   participants: number[]; //단채채팅방 만들기 위해 추가함
+  lastMessage: string;
   messages: ChatMessage[];
   isPinned: boolean;
   unread?: number;
