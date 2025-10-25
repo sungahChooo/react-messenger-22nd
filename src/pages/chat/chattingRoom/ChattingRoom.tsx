@@ -7,11 +7,9 @@ import users from '@/data/user.json';
 import { useChatStore } from '@/stores/chatStore';
 import { formatTime } from '@/utils/chatUtils';
 import { profileImages } from '@/data/profileImages';
-import type { ChatMessage } from '@/types/chat';
-type GroupedMessages = Record<string, ChatMessage[]>;
 
 export default function ChattingRoom() {
-  const myId = 1; // 내 ID
+  const myId = 1;
   const [input, setInput] = useState('');
   const { currentRoom, setCurrentRoom, messages, addMessage, toggleLike } = useChatStore();
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -29,18 +27,16 @@ export default function ChattingRoom() {
     prevLengthRef.current = messages.length;
   }, [messages]);
 
-  const getFormattedDate = (date = new Date()) => {
-    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
-  };
+  const getFormattedDate = (date = new Date()) =>
+    `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
 
   const handleSend = () => {
     if (!input.trim() || !roomId) return;
     const now = new Date();
-    //const now = new Date('2025-10-26T09:00:00');
     addMessage({
       sender: myId,
       message: input,
-      time: formatTime(new Date()),
+      time: formatTime(now),
       roomId,
       likes: 0,
       likedByMe: false,
@@ -53,50 +49,62 @@ export default function ChattingRoom() {
     if (e.key === 'Enter' && !e.nativeEvent.isComposing) handleSend();
   };
 
-  // 메시지를 날짜별로 그룹화
-  const groupedMessages: GroupedMessages = messages.reduce((acc, msg) => {
-    const date = msg.date || getFormattedDate(new Date());
-    if (!acc[date]) acc[date] = [];
-    acc[date].push(msg);
-    return acc;
-  }, {} as GroupedMessages);
+  const today = getFormattedDate(new Date());
+  const todayMessages = messages.filter((msg) => msg.date === today);
 
   return (
     <div className="bg-light-gray font-pretendard mx-auto min-h-screen w-full max-w-[375px] pb-[65px]">
       {currentRoom && <ChattingRoomHeader room={currentRoom} myId={myId} />}
       <div className="mx-3 mt-13 flex max-w-[345px] flex-col gap-1 overflow-y-auto">
-        <div className="flex justify-center">
-          <span className="mb-6 h-[32px] w-[115px] rounded-2xl bg-green-50 px-2 py-2 text-center text-xs font-normal text-gray-500">
-            2024년 6월 19일
+        <div className="mt-4 mb-2 flex justify-center">
+          <span className="h-[32px] w-[130px] rounded-2xl bg-green-50 px-2 py-2 text-center text-xs font-normal text-gray-500">
+            2025년 1월 1일
           </span>
         </div>
-        {Object.entries(groupedMessages).map(([date, msgs]) => (
-          <div key={date}>
-            {/* 날짜 라벨 */}
-            <div className="flex justify-center">
-              <span className="mb-6 h-[32px] w-[130px] rounded-2xl bg-green-50 px-2 py-2 text-center text-xs font-normal text-gray-500">
-                {date}
-              </span>
-            </div>
+        {/* 1️⃣ 기존 더미 메시지 */}
+        {messages
+          .filter((msg) => !msg.date) // 날짜 없는 더미 메시지
+          .map((msg, idx) => {
+            const sender = users.find((u) => u.id === msg.sender);
+            return (
+              <ChatMessageBubble
+                key={idx}
+                message={msg}
+                myId={myId}
+                senderName={sender?.name || '친구'}
+                profileImage={profileImages[sender?.id || 0]}
+                onLike={() => toggleLike(idx)}
+              />
+            );
+          })}
 
-            {/* 메시지들 */}
-            {msgs.map((msg: ChatMessage, idx: number) => {
-              const sender = users.find((u) => u.id === msg.sender);
-              return (
-                <ChatMessageBubble
-                  key={idx}
-                  message={msg}
-                  myId={myId}
-                  senderName={sender?.name || '친구'}
-                  profileImage={profileImages[sender?.id || 0]}
-                  onLike={() => toggleLike(idx)}
-                />
-              );
-            })}
+        {/* 2️⃣ 오늘 날짜 라벨 */}
+        {todayMessages.length > 0 && (
+          <div className="mt-4 mb-2 flex justify-center">
+            <span className="h-[32px] w-[130px] rounded-2xl bg-green-50 px-2 py-2 text-center text-xs font-normal text-gray-500">
+              {today}
+            </span>
           </div>
-        ))}
+        )}
+
+        {/* 3️⃣ 오늘 메시지 */}
+        {todayMessages.map((msg, idx) => {
+          const sender = users.find((u) => u.id === msg.sender);
+          return (
+            <ChatMessageBubble
+              key={idx}
+              message={msg}
+              myId={myId}
+              senderName={sender?.name || '친구'}
+              profileImage={profileImages[sender?.id || 0]}
+              onLike={() => toggleLike(idx)}
+            />
+          );
+        })}
+
         <div ref={messagesEndRef} />
       </div>
+
       <ChatInput
         value={input}
         onChange={(e) => setInput(e.target.value)}
