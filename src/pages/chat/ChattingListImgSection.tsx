@@ -35,7 +35,7 @@ export default function ChattingListImgSection({ participants }: ChattingListImg
             src={profileImages[p.id] || profileDefaultImage}
             alt={p.name}
             className={`rounded-full border-2 border-white ${
-              displayed.length === 1 ? 'h-9 w-9' : 'h-8 w-8'
+              displayed.length === 1 ? 'h-14 w-14' : 'h-8 w-8'
             } ${positionClass}`}
           />
         );

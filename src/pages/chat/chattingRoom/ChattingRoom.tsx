@@ -5,7 +5,6 @@ import ChatMessageBubble from './ChatMsgBubble';
 import ChatInput from './ChatRoomInput';
 import users from '@/data/user.json';
 import { useChatStore } from '@/stores/chatStore';
-import { formatTime } from '@/utils/chatUtils';
 import { profileImages } from '@/data/profileImages';
 
 export default function ChattingRoom() {
@@ -17,6 +16,7 @@ export default function ChattingRoom() {
   const { roomId } = useParams<{ roomId: string }>();
 
   useEffect(() => {
+    localStorage.clear();
     if (roomId) setCurrentRoom(roomId);
   }, [roomId]);
 
@@ -36,7 +36,7 @@ export default function ChattingRoom() {
     addMessage({
       sender: myId,
       message: input,
-      time: formatTime(now),
+      time: new Date().toISOString(),
       roomId,
       likes: 0,
       likedByMe: false,
@@ -61,7 +61,7 @@ export default function ChattingRoom() {
             2025년 1월 1일
           </span>
         </div>
-        {/* 1️⃣ 기존 더미 메시지 */}
+        {/* 기존 더미 메시지 */}
         {messages
           .filter((msg) => !msg.date) // 날짜 없는 더미 메시지
           .map((msg, idx) => {
@@ -78,7 +78,7 @@ export default function ChattingRoom() {
             );
           })}
 
-        {/* 2️⃣ 오늘 날짜 라벨 */}
+        {/* 오늘 날짜 라벨 */}
         {todayMessages.length > 0 && (
           <div className="mt-4 mb-2 flex justify-center">
             <span className="h-[32px] w-[130px] rounded-2xl bg-green-50 px-2 py-2 text-center text-xs font-normal text-gray-500">
@@ -87,9 +87,14 @@ export default function ChattingRoom() {
           </div>
         )}
 
-        {/* 3️⃣ 오늘 메시지 */}
+        {/* 오늘 메시지 */}
         {todayMessages.map((msg, idx) => {
           const sender = users.find((u) => u.id === msg.sender);
+          const nextMessage = todayMessages[idx + 1];
+          const isLastInTimeGroup =
+            !nextMessage ||
+            new Date(nextMessage.time).getHours() !== new Date(msg.time).getHours() ||
+            new Date(nextMessage.time).getMinutes() !== new Date(msg.time).getMinutes();
           return (
             <ChatMessageBubble
               key={idx}
@@ -98,6 +103,7 @@ export default function ChattingRoom() {
               senderName={sender?.name || '친구'}
               profileImage={profileImages[sender?.id || 0]}
               onLike={() => toggleLike(idx)}
+              prevMessage={isLastInTimeGroup ? null : todayMessages[idx - 1]}
             />
           );
         })}

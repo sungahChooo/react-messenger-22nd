@@ -8,11 +8,29 @@ interface ChatMessageBubbleProps {
   senderName: string;
   profileImage?: string;
   onLike?: () => void;
+  prevMessage?: boolean | ChatMessage | null;
 }
 
-export default function ChatMessageBubble({ message, myId, senderName, profileImage, onLike }: ChatMessageBubbleProps) {
+export default function ChatMessageBubble({
+  message,
+  myId,
+  senderName,
+  profileImage,
+  onLike,
+  prevMessage,
+}: ChatMessageBubbleProps) {
   const isMe = message.sender === myId;
-
+  const showSenderInfo =
+    !prevMessage ||
+    (() => {
+      const prev = new Date(prevMessage.time);
+      const curr = new Date(message.time);
+      return !(prev.getHours() === curr.getHours() && prev.getMinutes() === curr.getMinutes());
+    })();
+  const displayTime = new Date(message.time).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
   return (
     <div className={`mb-1 flex items-start gap-2 ${isMe ? 'justify-end' : 'justify-start'}`}>
       {/*친구만 프로필 이미지 표시 */}
@@ -26,7 +44,7 @@ export default function ChatMessageBubble({ message, myId, senderName, profileIm
           {!isMe && <span className="text-xs text-gray-500">{senderName}</span>}
           {/*메시지 내용,시간 */}
           <div className="flex flex-row items-end gap-1">
-            {isMe && <span className="text-xs text-gray-400">{message.time}</span>}
+            {isMe && showSenderInfo && <span className="text-xs text-gray-400">{displayTime}</span>}
             <div
               className={`max-w-[220px] rounded-tl-sm rounded-tr-xl rounded-br-xl rounded-bl-xl px-3 py-1 break-all ${
                 isMe ? 'bg-green-50' : 'bg-white'
@@ -34,7 +52,7 @@ export default function ChatMessageBubble({ message, myId, senderName, profileIm
             >
               {message.message}
             </div>
-            {!isMe && <span className="text-xs text-gray-400">{message.time}</span>}
+            {!isMe && showSenderInfo && <span className="text-xs text-gray-400">{displayTime}</span>}
           </div>
           {!isMe && (
             <div
