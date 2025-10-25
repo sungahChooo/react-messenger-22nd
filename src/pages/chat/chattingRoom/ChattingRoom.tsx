@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom';
 import ChattingRoomHeader from './ChattingRoomHeader';
 import ChatMessageBubble from './ChatMsgBubble';
 import ChatInput from './ChatRoomInput';
+import users from '@/data/user.json';
 import { useChatStore } from '@/stores/chatStore';
 import { formatTime } from '@/utils/chatUtils';
+import { profileImages } from '@/data/profileImages';
 
 export default function ChattingRoom() {
   const myId = 1; // 내 ID
@@ -51,9 +53,19 @@ export default function ChattingRoom() {
             2024년 6월 19일
           </span>
         </div>
-        {messages.map((msg, idx) => (
-          <ChatMessageBubble key={idx} message={msg} onLike={() => toggleLike(idx)} myId={myId} />
-        ))}
+        {messages.map((msg, idx) => {
+          const sender = users.find((u) => u.id === msg.sender);
+          return (
+            <ChatMessageBubble
+              key={idx}
+              message={msg}
+              myId={myId}
+              senderName={sender?.name || '친구'}
+              profileImage={profileImages[sender?.id || 0]}
+              onLike={() => toggleLike(idx)}
+            />
+          );
+        })}
         <div ref={messagesEndRef} />
       </div>
       <ChatInput
