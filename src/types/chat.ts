@@ -5,6 +5,7 @@ export interface ChatMessage {
   time: string;
   likes: number;
   likedByMe: boolean;
+  date: string;
 }
 
 export interface ChatRoom {

@@ -16,7 +16,7 @@ export default function ChatListItem({ room, myId, onClick }: ChatListItemProps)
 
   return (
     <li className="flex cursor-pointer gap-2" onClick={onClick}>
-      <div className="h-14 w-14">
+      <div className="h-14 w-14 flex-shrink-0 items-center justify-center">
         <ChattingListImgSection participants={participants} />
       </div>
       <div className="flex w-full flex-col gap-1">

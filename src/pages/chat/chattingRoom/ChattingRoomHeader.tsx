@@ -26,9 +26,7 @@ export default function ChattingRoomHeader({ room, myId }: ChattingRoomHeaderPro
           <span onClick={() => navigate('/chat')} className="h-9 w-9 cursor-pointer">
             <img src={backIcon} alt="back" />
           </span>
-          <div className="h-9 w-9">
-            <ChattingListImgSection participants={participants} />
-          </div>
+          <ChattingListImgSection participants={participants} />
           <span>{names}</span>
         </div>
       }

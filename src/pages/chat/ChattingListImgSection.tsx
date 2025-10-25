@@ -6,26 +6,40 @@ interface ChattingListImgSectionProps {
 }
 
 export default function ChattingListImgSection({ participants }: ChattingListImgSectionProps) {
+  const displayed = participants.slice(0, 3); // 최대 3명 표시
+
+  // 부모 div 클래스 결정
+  let containerClass = 'relative h-14 w-14 overflow-hidden z-0';
+  if (displayed.length === 2) {
+    containerClass += ' flex items-center -space-x-3';
+  }
+
   return (
-    <div
-      className={`grid ${
-        participants.length === 1
-          ? 'grid-cols-1 grid-rows-1'
-          : participants.length === 2
-            ? 'grid-cols-2 grid-rows-1'
-            : participants.length === 3 || participants.length === 4
-              ? 'grid-cols-2 grid-rows-2'
-              : 'grid-cols-3 grid-rows-3'
-      } overflow-hidden`}
-    >
-      {participants.slice(0, 9).map((p) => (
-        <img
-          key={p.id}
-          src={profileImages[p.id] || profileDefaultImage}
-          alt={p.name}
-          className="aspect-square w-full rounded-full object-cover"
-        />
-      ))}
+    <div className={containerClass}>
+      {displayed.map((p, index) => {
+        let positionClass = '';
+
+        if (displayed.length === 3) {
+          // 3명 삼각형 배치
+          const positions = [
+            'absolute top-0 left-1/2 -translate-x-1/2 z-30', // 위 중앙
+            'absolute bottom-0 left-0 z-20', // 왼쪽 아래
+            'absolute bottom-0 right-0 z-10', // 오른쪽 아래
+          ];
+          positionClass = positions[index];
+        }
+
+        return (
+          <img
+            key={p.id}
+            src={profileImages[p.id] || profileDefaultImage}
+            alt={p.name}
+            className={`rounded-full border-2 border-white ${
+              displayed.length === 1 ? 'h-14 w-14' : 'h-8 w-8'
+            } ${positionClass}`}
+          />
+        );
+      })}
     </div>
   );
 }
