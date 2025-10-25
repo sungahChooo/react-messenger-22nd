@@ -14,8 +14,10 @@ export function sortChatRooms(rooms: ChatRoom[]): ChatRoom[] {
 
 export const formatTime = (date: Date) => {
   const hours = date.getHours();
-  const minutes = date.getMinutes();
-  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const hour12 = hours % 12 || 12;
+  return `${hour12}:${minutes} ${ampm}`;
 };
 
 export const saveMessages = (roomId: string, messages: ChatMessage[]) => {
