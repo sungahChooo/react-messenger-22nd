@@ -90,7 +90,7 @@ export default function ChattingRoom() {
         {todayMessages.map((msg, idx) => {
           const sender = users.find((u) => u.id === msg.sender);
           const nextMessage = todayMessages[idx + 1];
-          const isLastInTimeGroup =
+          const showTime =
             !nextMessage ||
             new Date(nextMessage.time).getHours() !== new Date(msg.time).getHours() ||
             new Date(nextMessage.time).getMinutes() !== new Date(msg.time).getMinutes();
@@ -102,7 +102,7 @@ export default function ChattingRoom() {
               senderName={sender?.name || '친구'}
               profileImage={profileImages[sender?.id || 0]}
               onLike={() => toggleLike(idx)}
-              prevMessage={isLastInTimeGroup ? null : todayMessages[idx - 1]}
+              showTime={showTime}
             />
           );
         })}

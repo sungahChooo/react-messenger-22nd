@@ -30,5 +30,5 @@ export const loadMessages = (roomId: string, defaultMessages: ChatMessage[] = []
 };
 
 export function getParticipantProfiles(room: ChatRoom, myId: number): User[] {
-  return room.participants.filter((id) => id !== myId).map((id) => users.find((u) => u.id === id));
+  return room.participants.filter((id) => id !== myId).map((id) => users.find((u) => u.id === id)!);
 }

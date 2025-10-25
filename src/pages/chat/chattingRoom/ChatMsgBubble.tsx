@@ -8,7 +8,7 @@ interface ChatMessageBubbleProps {
   senderName: string;
   profileImage?: string;
   onLike?: () => void;
-  prevMessage?: boolean | ChatMessage | null;
+  showTime?: boolean;
 }
 
 export default function ChatMessageBubble({
@@ -17,16 +17,9 @@ export default function ChatMessageBubble({
   senderName,
   profileImage,
   onLike,
-  prevMessage,
+  showTime = true,
 }: ChatMessageBubbleProps) {
   const isMe = message.sender === myId;
-  const showSenderInfo =
-    !prevMessage ||
-    (() => {
-      const prev = new Date(prevMessage.time);
-      const curr = new Date(message.time);
-      return !(prev.getHours() === curr.getHours() && prev.getMinutes() === curr.getMinutes());
-    })();
   const displayTime = new Date(message.time).toLocaleTimeString([], {
     hour: '2-digit',
     minute: '2-digit',
@@ -44,7 +37,7 @@ export default function ChatMessageBubble({
           {!isMe && <span className="text-xs text-gray-500">{senderName}</span>}
           {/*메시지 내용,시간 */}
           <div className="flex flex-row items-end gap-1">
-            {isMe && showSenderInfo && <span className="text-xs text-gray-400">{displayTime}</span>}
+            {isMe && showTime && <span className="text-xs text-gray-400">{displayTime}</span>}
             <div
               className={`max-w-[220px] rounded-tl-sm rounded-tr-xl rounded-br-xl rounded-bl-xl px-3 py-1 break-all ${
                 isMe ? 'bg-green-50' : 'bg-white'
@@ -52,7 +45,7 @@ export default function ChatMessageBubble({
             >
               {message.message}
             </div>
-            {!isMe && showSenderInfo && <span className="text-xs text-gray-400">{displayTime}</span>}
+            {!isMe && showTime && <span className="text-xs text-gray-400">{displayTime}</span>}
           </div>
           {!isMe && (
             <div
