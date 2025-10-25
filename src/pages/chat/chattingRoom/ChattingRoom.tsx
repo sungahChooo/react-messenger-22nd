@@ -16,7 +16,6 @@ export default function ChattingRoom() {
   const { roomId } = useParams<{ roomId: string }>();
 
   useEffect(() => {
-    localStorage.clear();
     if (roomId) setCurrentRoom(roomId);
   }, [roomId]);
 
