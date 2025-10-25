@@ -4,31 +4,38 @@ import profileIcon from '@/assets/profile.svg';
 
 interface ChatMessageBubbleProps {
   message: ChatMessage;
+  myId: number;
+  senderName?: string;
+  profileImage?: string;
   onLike?: () => void;
 }
 
-export default function ChatMessageBubble({ message, onLike }: ChatMessageBubbleProps) {
-  return (
-    <div className={`mb-1 flex items-start gap-2 ${message.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
-      {message.sender === 'friend' && <img src={profileIcon} alt="프로필" className="h-9 w-9 rounded-full" />}
+export default function ChatMessageBubble({ message, myId, senderName, profileImage, onLike }: ChatMessageBubbleProps) {
+  const isMe = message.sender === myId;
 
-      <div className={`flex flex-col ${message.sender === 'me' ? 'items-end' : 'items-start'}`}>
-        {message.sender === 'friend' && <span className="mb-1 text-xs text-gray-500">친구 이름</span>}
+  return (
+    <div className={`mb-1 flex items-start gap-2 ${isMe ? 'justify-end' : 'justify-start'}`}>
+      {/*친구만 프로필 이미지 표시 */}
+      {!isMe && <img src={profileImage || profileIcon} alt="프로필" className="h-9 w-9 rounded-full" />}
+
+      <div className={`flex flex-col ${!isMe ? 'items-end' : 'items-start'}`}>
+        {!isMe && <span className="mb-1 text-xs text-gray-500">{senderName}</span>}
+
         {/*메시지 버블 */}
         <div className="group flex flex-col items-start gap-2">
           <div className="flex flex-row items-end gap-1">
-            {message.sender === 'me' && <span className="text-xs text-gray-400">{message.time}</span>}
+            {isMe && <span className="text-xs text-gray-400">{message.time}</span>}
 
             <div
               className={`max-w-[220px] rounded-tl-sm rounded-tr-xl rounded-br-xl rounded-bl-xl px-3 py-1 break-all ${
-                message.sender === 'me' ? 'bg-green-50' : 'bg-white'
+                isMe ? 'bg-green-50' : 'bg-white'
               }`}
             >
               {message.message}
             </div>
-            {message.sender === 'friend' && <span className="text-xs text-gray-400">{message.time}</span>}
+            {!isMe && <span className="text-xs text-gray-400">{message.time}</span>}
           </div>
-          {message.sender === 'friend' && (
+          {!isMe && (
             <div
               className={`flex cursor-pointer items-center gap-1 rounded-full bg-gray-200 px-2 py-1 text-xs ${
                 message.likes === 0 ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'

@@ -7,6 +7,7 @@ import { useChatStore } from '@/stores/chatStore';
 export default function Chatting() {
   const navigate = useNavigate();
   const { chatRooms } = useChatStore();
+
   return (
     <div className="items font-pretendard mx-auto min-h-screen w-full max-w-[375px] bg-white pt-12 pb-[65px]">
       <ChattingHeader />

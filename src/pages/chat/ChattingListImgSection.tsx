@@ -16,7 +16,7 @@ export default function ChattingListImgSection({ participants }: ChattingListImg
             : participants.length === 3 || participants.length === 4
               ? 'grid-cols-2 grid-rows-2'
               : 'grid-cols-3 grid-rows-3'
-      } h-14 w-14 items-center gap-0.5 overflow-hidden`}
+      } overflow-hidden`}
     >
       {participants.slice(0, 9).map((p) => (
         <img
