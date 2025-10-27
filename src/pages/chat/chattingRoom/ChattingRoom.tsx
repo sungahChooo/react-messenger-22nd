@@ -73,6 +73,7 @@ export default function ChattingRoom() {
                 senderName={sender?.name || '친구'}
                 profileImage={profileImages[sender?.id || 0]}
                 onLike={() => toggleLike(idx)}
+                showTime={true}
               />
             );
           })}

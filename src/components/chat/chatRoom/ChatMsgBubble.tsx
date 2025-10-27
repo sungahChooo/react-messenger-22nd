@@ -20,10 +20,20 @@ export default function ChatMessageBubble({
   showTime = true,
 }: ChatMessageBubbleProps) {
   const isMe = message.sender === myId;
-  const displayTime = new Date(message.time).toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+
+  // 안전하게 시간을 표시하는 함수
+  const getDisplayTime = (time?: string) => {
+    if (!time) return '시간이 없습니다';
+    const date = new Date(time);
+    if (isNaN(date.getTime())) {
+      // 이미 "3:01 PM" 같이 로컬 문자열이면 그대로 반환
+      return time;
+    }
+    // ISO 문자열이면 locale time으로 변환
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
+
+  const displayTime = getDisplayTime(message.time);
   return (
     <div className={`mb-1 flex items-start gap-2 ${isMe ? 'justify-end' : 'justify-start'}`}>
       {/*친구만 프로필 이미지 표시 */}
