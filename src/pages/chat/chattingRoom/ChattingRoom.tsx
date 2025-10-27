@@ -67,7 +67,7 @@ export default function ChattingRoom() {
             const sender = users.find((u) => u.id === msg.sender);
             return (
               <ChatMessageBubble
-                key={idx}
+                key={msg.time + idx}
                 message={msg}
                 myId={myId}
                 senderName={sender?.name || '친구'}
@@ -97,7 +97,7 @@ export default function ChattingRoom() {
             new Date(nextMessage.time).getMinutes() !== new Date(msg.time).getMinutes();
           return (
             <ChatMessageBubble
-              key={idx}
+              key={msg.time + idx}
               message={msg}
               myId={myId}
               senderName={sender?.name || '친구'}

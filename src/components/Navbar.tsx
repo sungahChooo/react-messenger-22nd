@@ -6,7 +6,7 @@ import SettingsIcon from '@/assets/setting.svg?react';
 
 import { Link, useLocation } from 'react-router-dom';
 
-function Sidebar() {
+function Navbar() {
   const { pathname } = useLocation();
 
   return (
@@ -85,4 +85,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default Navbar;
