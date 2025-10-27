@@ -1,6 +1,6 @@
-import FriendListHeader from '@/pages/friendList/FriendListHeader';
-import MyProfileSection from '@/pages/friendList/MyProfileSection';
-import FriendListSection from '@/pages/friendList/FriendListSection';
+import FriendListHeader from '@/components/friendList/FriendListHeader';
+import MyProfileSection from '@/components/friendList/MyProfileSection';
+import FriendListSection from '@/components/friendList/FriendListSection';
 
 function FriendList() {
   return (

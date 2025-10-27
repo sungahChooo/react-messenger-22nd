@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import ChattingRoomHeader from './ChattingRoomHeader';
-import ChatMessageBubble from './ChatMsgBubble';
-import ChatInput from './ChatRoomInput';
+import ChattingRoomHeader from '../../../components/chat/chatRoom/ChattingRoomHeader';
+import ChatMessageBubble from '../../../components/chat/chatRoom/ChatMsgBubble';
+import ChatInput from '../../../components/chat/chatRoom/ChatRoomInput';
 import users from '@/data/user.json';
 import { useChatStore } from '@/stores/chatStore';
 import { profileImages } from '@/data/profileImages';

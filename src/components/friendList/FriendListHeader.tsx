@@ -7,8 +7,8 @@ export default function FriendListHeader() {
       title="친구"
       right={
         <div className="flex cursor-pointer gap-4">
-          <img src={findIcon} alt="search" className="h-[24px] w-[24px]" />
-          <img src={addFriendIcon} alt="camera" className="h-[24px] w-[24px]" />
+          <img src={findIcon} alt="search" className="h-6 w-6" />
+          <img src={addFriendIcon} alt="camera" className="h-6 w-6" />
         </div>
       }
       bgColor="white"

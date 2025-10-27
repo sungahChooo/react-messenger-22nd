@@ -9,10 +9,10 @@ import profile1 from '@/assets/profile1.jpg';
 import profile2 from '@/assets/profile2.jpg';
 import profile3 from '@/assets/profile3.jpg';
 import profile4 from '@/assets/profile4.jpg';
-import XButton from './XButton';
-import BackgroundLayer from './BackgroundLayer';
-import ProfilePageButton from './ProfilePageButton';
-import ProfileCard from './ProfileBox';
+import XButton from '../../../components/friendList/profile/XButton';
+import BackgroundLayer from '../../../components/friendList/profile/BackgroundLayer';
+import ProfilePageButton from '../../../components/friendList/profile/ProfilePageButton';
+import ProfileCard from '../../../components/friendList/profile/ProfileBox';
 
 // 이미지 매핑
 const images: Record<string, string> = {

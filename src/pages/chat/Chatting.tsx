@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import ChattingHeader from '@/pages/chat/ChattingHeader';
-import ChatListItem from '@/pages/chat/ChatListItem';
-import Banner from './ChatBanner';
+import ChattingHeader from '@/components/chat/ChattingHeader';
+import ChatListItem from '@/components/chat/ChatListItem';
+import Banner from '../../components/chat/ChatBanner';
 import { useChatStore } from '@/stores/chatStore';
 
 export default function Chatting() {
