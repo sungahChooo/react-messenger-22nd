@@ -27,7 +27,7 @@ export default function ChattingRoomHeader({ room, myId }: ChattingRoomHeaderPro
             <img src={backIcon} alt="back" />
           </span>
           <ChattingListImgSection participants={participants} />
-          <span className="max-w-[120px] truncate">{names}</span>
+          <span className="block max-w-[120px] truncate">{names}</span>
         </div>
       }
       right={

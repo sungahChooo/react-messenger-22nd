@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Profile from '@/pages/friendList/profile/MyProfile';
 import Statusbar from '@/components/Statusbar';
 import FriendProfile from '@/pages/friendList/profile/FriendProfile';
+import DefaultLayout from '@/layout/Layout';
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -32,6 +33,7 @@ export default function App() {
     <Router>
       <AppLayout>
         <Routes>
+          <Route element={<DefaultLayout />} />
           <Route path="/" element={<FriendList />} />
           <Route path="/friendList" element={<FriendList />} />
           <Route path="/chat" element={<Chatting />} />
