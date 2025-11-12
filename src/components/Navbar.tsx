@@ -3,7 +3,7 @@ import ChatIcon from '@/assets/chatIcon.svg?react';
 import CommunityIcon from '@/assets/community.svg?react';
 import CallIcon from '@/assets/call.svg?react';
 import SettingsIcon from '@/assets/setting.svg?react';
-
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 function Navbar() {
@@ -85,4 +85,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default React.memo(Navbar);

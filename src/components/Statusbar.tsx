@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import batteryIcon from '@/assets/battery.svg';
 import wifiIcon from '@/assets/wifi.svg';
 import dataIcon from '@/assets/data.svg';
@@ -42,4 +42,4 @@ function Statusbar({ isProfile, isChatRoom }: { isProfile: boolean; isChatRoom: 
     </div>
   );
 }
-export default Statusbar;
+export default React.memo(Statusbar);
